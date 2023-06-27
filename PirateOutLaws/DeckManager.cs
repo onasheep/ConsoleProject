@@ -13,27 +13,41 @@ namespace ConsoleProject
         public List<Card> MyDeck { get; set; }
         public List<Card> MyHand { get; set; }
         public List<Card> DiscardDeck { get; set; }
+        public List<Card> WinSelectCard { get; set; }
 
         // 전체 카드 덱 
         public void InitCardDeck()
         {
             Card slash = new Card();
             slash.Init("베기", 0, 8, 0);
-            Card fist = new Card();
-            fist.Init("주먹", 0, 6, 0);
+            Card nanta = new Card();
+            nanta.Init("난타", 0, 9, 0);
             Card shot = new Card();
             shot.Init("사격", 1, 7, 1);
             Card accuShot = new Card();
-            accuShot.Init("속사", 2, 10, 1);
-            Card WholeShot = new Card();
-            WholeShot.Init("난사", 3, 15, 2);
+            accuShot.Init("속사", 2, 17, 1);
+            Card wholeShot = new Card();
+            wholeShot.Init("난사", 3, 20, 2);
+            Card windstorm = new Card();
+            windstorm.Init("광풍", 0, 9, 0);
+            Card allin = new Card();
+            allin.Init("올인", 0, 15, 0);
+            Card quickShot = new Card();
+            quickShot.Init("큇샷",0, 6, 1);
 
-            CardDeck = new List<Card>();
 
-            CardDeck.Add(slash);
-            CardDeck.Add(fist);
-            CardDeck.Add(shot);
-            CardDeck.Add(accuShot);
+            CardDeck = new List<Card>
+            {
+                slash,
+                nanta,
+                shot,
+                accuShot,
+                wholeShot,
+                windstorm,
+                allin,
+                quickShot
+
+            };
 
         }
         // 플레이어 초기 덱
@@ -44,14 +58,14 @@ namespace ConsoleProject
             for (int i = 0; i < 2; i++)
             {
                 Card fist = new Card();
-                fist.Init("주먹", 0, 6, 0);
+                fist.Init("주먹", 2, 6, 0);
                 MyDeck.Add(fist);
             }
 
             for (int i = 0; i < 2; i++)
             {
                 Card slash = new Card();
-                slash.Init("베기", 0, 8, 0);
+                slash.Init("베기", 2, 8, 0);
                 MyDeck.Add(slash);
 
             }
@@ -66,10 +80,9 @@ namespace ConsoleProject
 
 
             Card food = new Card();
-            food.Init("식량", 0, 6, 2);
-
-
+            food.Init("식량", 0, 100, 2);
             MyDeck.Add(food);
+
 
         }
 
@@ -90,12 +103,39 @@ namespace ConsoleProject
             DiscardDeck = new List<Card>();
         }
 
-        public void ShuffleDeck()
+        public void InitWinSelectCard(List<Card> cardDeck)
         {
-            for(int i = 0; i < DiscardDeck.Count;i++)
+            Random rand = new Random();
+
+            WinSelectCard = new List<Card>();
+            for(int i = 0; i < 3; i++)
             {
-                MyDeck.Add(DiscardDeck[i]);
+                int randNum = rand.Next(0, cardDeck.Count);
+                WinSelectCard.Add(cardDeck[randNum]);
+
             }
+        }
+
+
+        public void ChooseCard(List<Card> WinSelectCard, List<Card> myDeck)
+        {
+
+            while(true)
+            {
+                Console.SetCursorPosition(5, 26);
+                Console.WriteLine("사용할 카드를 선택하세요.");
+                Console.CursorVisible = true;
+                Console.SetCursorPosition(5, 27);
+                int.TryParse(Console.ReadLine(), out int num);
+                if (num <= WinSelectCard.Count && num > 0)
+                {
+                    myDeck.Add(WinSelectCard[num - 1]);
+                    Console.Clear();
+                    break;
+
+                }
+            }
+          
         }
     }
 }

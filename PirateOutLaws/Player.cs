@@ -18,24 +18,12 @@ namespace ConsoleProject
         public Player()
         {
             Name = "포수";
-            MaxHp = 200;
+            MaxHp = 250;
             CurHp = MaxHp;
             ActionPoint = 3;
         }
 
-        public void ChooseCard(List<Card> myHand, List<Card> discardDeck, Enemy enemy)
-        {
-            Console.SetCursorPosition(5, 26);
-            Console.WriteLine("사용할 카드를 선택하세요.");
-            Console.SetCursorPosition(5, 27);
-            if (int.TryParse(Console.ReadLine(), out int num))
-            {
-                discardDeck.Add(myHand[num - 1]);
-                enemy.CurHp -= myHand[num - 1].Value;
-                myHand.RemoveAt(num - 1);
-            }
-        }
-
+ 
 
     }
 }

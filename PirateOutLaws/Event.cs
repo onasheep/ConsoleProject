@@ -7,26 +7,20 @@ using System.Threading.Tasks;
 
 namespace PirateOutLaws
 {
-    public class Quest
+    public class Event
     {
 
         public List<string> dialog;
         public bool isBattle;
-
-        public int Value { get; set; }
-        public void Init(List<string> dialog_, bool isBattle_)
+        public int key;
+        public void Init(List<string> dialog_, bool isBattle_, int key_)
         {
 
             this.dialog = dialog_;
             this.isBattle = isBattle_;
+            this.key = key_;
         }
-        public void Init(List<string> dialog_, bool isBattle_, int value)
-        {
-
-            this.dialog = dialog_;
-            this.isBattle = isBattle_;
-            this.Value = value;
-        }
+      
      
 
     }

@@ -21,10 +21,7 @@ namespace PirateOutLaws
             this.CurHp = maxHp;
         }
 
-        public void Attack()
-        {
-           
-        }
+  
 
     }
 }
