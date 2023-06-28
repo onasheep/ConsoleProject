@@ -130,7 +130,7 @@ namespace PirateOutLaws
             {
                 uiManager.DrawInputLog();
                 Console.SetCursorPosition(5, 26);
-                Console.WriteLine("사용할 카드를 선택하세요.".PadRight(20, ' '));
+                Console.WriteLine("사용할 카드를 선택하세요.(턴 넘기기 Enter)".PadRight(20, ' '));
                 Console.CursorVisible = true;
 
 
@@ -141,7 +141,7 @@ namespace PirateOutLaws
                 int.TryParse(input, out int num);
 
                
-                // 0 을 입력 받은 경우 턴 넘기기
+                // 값을 못 넣었으니 Enter 입력 받은 경우 턴 넘기기
                 if (num == 0)
                 {
                     isMyTurn = false;
@@ -202,6 +202,30 @@ namespace PirateOutLaws
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
                             myHand.RemoveAt(num - 1);
                             break;
+                        case 4:
+                            if(player_.ActionPoint < player_.MaxActionPoint)
+                            {
+                                player_.ActionPoint += myHand[num - 1].Value;
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.SetCursorPosition(5, 26);
+                                Console.WriteLine("탄약이 넘쳐흘러 낭비했습니다.".PadRight(30, '　'));
+                                Console.ResetColor();
+                                Thread.Sleep(1000);
+
+                            }
+                            myHand.RemoveAt(num - 1);
+                            break;
+                        case 5:
+                            player_.ActionPoint -= myHand[num - 1].ActionCost;
+                            for(int i = 0; i < myHand[num - 1].Value; i++)
+                            {                               
+                                DrawCard(myDeck, myHand, discardDeck);
+                            }
+                            myHand.RemoveAt(num - 1);
+                            break;
                     }
                 }
                 EnemyDieCheck(enemyList_);
@@ -242,7 +266,7 @@ namespace PirateOutLaws
                 uiManager.DrawInputLog();
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.SetCursorPosition(5, 26);
-                Console.WriteLine("패가 가득 차서 드로우한 [{0,2}]을(를) 버립니다.".PadRight(10, ' '), myDeck_[drawNum].Name);
+                Console.WriteLine("패가 가득 차서 드로우한 [{0,2} ]을(를) 버립니다.".PadRight(10, ' '), myDeck_[drawNum].Name);
                 Console.CursorVisible = false;
                 Console.ResetColor();
                 Thread.Sleep(800);

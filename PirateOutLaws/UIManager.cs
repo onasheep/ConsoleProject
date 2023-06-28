@@ -370,31 +370,31 @@ namespace ConsoleProject
             {
                 for (int j = 16; j < 24; j++)
                 {
-                    Console.SetCursorPosition(6 + (10 * (i)), j );
+                    Console.SetCursorPosition(4 + (11 * (i)), j );
                     if (j == 16)
                     {
-                        Console.WriteLine("┏━━ [{0}]━━┓", i + 1);
+                        Console.WriteLine("┏━━━ [{0}]━━┓", i + 1);
                     }            
                     else if( j == 17)
                     {
-                        Console.WriteLine("┃ {0,2}[{1,1}]┃", myHand_[i].Name, myHand_[i].ActionCost);
+                        Console.WriteLine("┃{0,2}[{1,1}]┃", myHand_[i].Name, myHand_[i].ActionCost);
                     }
                     else if (j == 18)
                     {
-                        Console.WriteLine($"┃  {myHand_[i].TypeName,-3}┃");
+                        Console.WriteLine($"┃   {myHand_[i].TypeName,-3}┃");
 
                     }
                     else if(j == 20)
                     {
-                        Console.WriteLine("┃  {0,3}   ┃", myHand_[i].Value);
+                        Console.WriteLine("┃   {0,3}   ┃", myHand_[i].Value);
                     }
                     else if (j == 23)
                     {
-                        Console.WriteLine("┗━━━━━━━━┛");
+                        Console.WriteLine("┗━━━━━━━━━┛");
                     }
                     else
                     {
-                        Console.WriteLine("┃        ┃");
+                        Console.WriteLine("┃         ┃");
                                                
                     }
                 }
@@ -410,10 +410,10 @@ namespace ConsoleProject
             {
                 for (int j = 15; j < 24; j++)
                 {
-                    Console.SetCursorPosition(13 + (11 * i) + i, j);
+                    Console.SetCursorPosition(12 + (13 * i) , j);
                     if (j == 15)
                     {
-                        Console.Write("┏━━━ [{0}]━━━┓".PadRight(10), i + 1);
+                        Console.Write("┏━━━━ [{0}]━━━┓".PadRight(10), i + 1);
                     }
                     else if (j == 16)
                     {
@@ -421,17 +421,17 @@ namespace ConsoleProject
                     }
                     else if (j == 19)
                     {
-                        Console.Write($"┃{WinSelectCard[i].Value,6}    ┃".PadRight(10));
+                        Console.Write($"┃ {WinSelectCard[i].Value,6}    ┃".PadRight(10));
                     }
                     else if (j == 23)
                     {
-                        Console.Write("┗━━━━━━━━━━┛".PadRight(10));
+                        Console.Write("┗━━━━━━━━━━━┛".PadRight(10));
                     }                
                     
                     else
                     {
 
-                        Console.Write("┃          ┃".PadRight(10));
+                        Console.Write("┃           ┃".PadRight(10));
 
                     }
                     //Console.SetCursorPosition(50, j );

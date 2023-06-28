@@ -164,8 +164,8 @@ namespace ConsoleProject
                     Enemy thief = new Enemy();
                     Enemy samllThied = new Enemy();
                     enemyList = new List<Enemy>();
-                    thief.Init("도적", 5, 50, 50); // 5 - >임시 조정 대미지 1000
-                    samllThied.Init("민첩한 도적", 7, 30, 30);
+                    thief.Init("도적", 10, 50, 50); // 5 - >임시 조정 대미지 1000
+                    samllThied.Init("민첩한 도적", 14, 30, 30);
                     enemyList.Add(thief);
                     enemyList.Add(samllThied);
                     
@@ -189,8 +189,8 @@ namespace ConsoleProject
                     Enemy wolf = new Enemy();
                     Enemy wolf1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    wolf.Init("늑대", 1000, 30, 30); // 8 - > 임시 조정 대미지 1000
-                    wolf1.Init("늑대", 7, 30, 30);
+                    wolf.Init("늑대", 15, 30, 30); // 8 - > 임시 조정 대미지 1000
+                    wolf1.Init("늑대", 12, 30, 30);
                     enemyList.Add(wolf);
                     enemyList.Add(wolf1);
                     OnBattle(enemyList);
@@ -207,8 +207,8 @@ namespace ConsoleProject
                     Enemy zombie = new Enemy();
                     Enemy ghost1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    zombie.Init("좀비", 10, 60, 60); // 10 - >임시 조정 대미지 1000
-                    ghost1.Init("원혼", 15, 20, 50);
+                    zombie.Init("좀비", 20, 60, 60); // 10 - >임시 조정 대미지 1000
+                    ghost1.Init("원혼", 25, 20, 50);
                     enemyList.Add(zombie);
                     enemyList.Add(ghost1);
 
