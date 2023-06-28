@@ -241,11 +241,13 @@ namespace ConsoleProject
             while (true)
             {
 
-                uiManager.DrawBattleScene(deckManager.MyDeck.Count, enemyList);
+                uiManager.DrawBattleScene(enemyList);
                 uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
                 uiManager.DrawInputLog();
                 uiManager.DrawDeckUi(deckManager.MyDeck);
                 uiManager.PrintMyHand(deckManager.MyHand);
+
+
                 bS.Battle(deckManager.MyHand, deckManager.DiscardDeck,deckManager.MyDeck, player, enemyList);
 
                 if(player.CurHp < 0)
@@ -262,11 +264,14 @@ namespace ConsoleProject
                     uiManager.DrawWinBattleScene();
                     uiManager.DrawInputLog();
 
+                    // 보스 전 종료 후 카드 선택 스킵 코드
                     if(eventCount >= bossEventCount)
                     {
                         isEnd = true;
                         break;
                     }
+
+
                     // 카드 덱에서 승리 카드 리스트로 3개 넣기
                     deckManager.InitWinSelectCard(deckManager.CardDeck);
 

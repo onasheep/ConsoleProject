@@ -120,7 +120,7 @@ namespace ConsoleProject
         }
 
         // 배틀씬 
-        public void DrawBattleScene(int myDeckCount,List<Enemy> enemyList_)
+        public void DrawBattleScene(List<Enemy> enemyList_)
         {
             for (int j = 4; j < 25; j++)
             {
@@ -132,7 +132,7 @@ namespace ConsoleProject
                 }
                 else if(j == 5)
                 {
-                    Console.Write("│  남은 덱: {0}                                            │", myDeckCount);
+                    Console.Write("│                                                        │");
                 }
                 else if(j == 6)
                 {

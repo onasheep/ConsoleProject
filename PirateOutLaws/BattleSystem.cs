@@ -12,8 +12,8 @@ namespace PirateOutLaws
     public class BattleSystem
     {
         bool isFirstTurn = true;
-        bool isPick;
-        bool isTurnEnd = false;
+        bool isMyTurn = default;
+
         UIManager uiManager;
      
         public void Init()
@@ -25,33 +25,43 @@ namespace PirateOutLaws
         // 행동력 추가하기( 폴리싱)
         public void Battle(List<Card> myHand, List<Card> discardDeck, List<Card> myDeck,Player player_, List<Enemy> enemyList_)
         {
+            // ui 초기화
             Init();
-            isPick = false;
+
+            // 카드 고름 함수 
+            isMyTurn = true;
+
+            // 첫 턴 드로우 생략
+
+
 
             if (!isFirstTurn)
             {
                 DrawCard(myDeck, myHand);
+                uiManager.PrintMyHand(myHand);
             }
+
+
             // 플레이어 공격 
             if (myDeck.Any())
             {
-                while (!isPick) // !isPick
+                while (isMyTurn)
                 {
+                
 
                     ChooseCard(myHand, discardDeck, player_, enemyList_);
-                    uiManager.DrawBattleScene(myDeck.Count, enemyList_);
-                    uiManager.PrintMyHand(myHand);
-                    uiManager.DrawBattleScene(myDeck.Count, enemyList_);
-                    uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
-                    uiManager.DrawInputLog();
-                    uiManager.DrawDeckUi(myDeck);
-                    uiManager.PrintMyHand(myHand);
+                    isFirstTurn = false;
+
 
                 }
-                Console.Clear();
 
-                DrawCard(myDeck, myHand);
+
+                uiManager.DrawDeckUi(myDeck);   
+
+
+
             }
+            // 내 덱이 0개가 되면 버림패를 덱으로 가져옴
             else
             {
                 foreach(Card card in discardDeck)
@@ -62,7 +72,7 @@ namespace PirateOutLaws
 
             }
 
-            EnemyCheck(enemyList_);
+            EnemyDieCheck(enemyList_);
 
             // 적 공격
             for (int i = 0; i < enemyList_.Count; i++)
@@ -79,60 +89,76 @@ namespace PirateOutLaws
         public void ChooseCard(List<Card> myHand, List<Card> discardDeck, Player player_, List<Enemy> enemyList_)
         {
             Console.SetCursorPosition(5, 26);
-            Console.WriteLine("사용할 카드를 선택하세요.");
+            Console.WriteLine("사용할 카드를 선택하세요.   ");
             Console.CursorVisible = true;
 
-            Console.SetCursorPosition(5, 27);
-            string input = Console.ReadLine();
-            int.TryParse(input, out int num);
 
 
-            if (num <= myHand.Count && num > 0)
-            {
-                discardDeck.Add(myHand[num - 1]);
-                switch (myHand[num - 1].TargetIndex)
+            //while (!isPick)
+            //{
+
+        
+
+
+                Console.SetCursorPosition(5, 27);
+                string input = Console.ReadLine();
+                int.TryParse(input, out int num);
+
+                if(num == 0)
                 {
-                    // 근접 가장 앞쪽 적 공격
-                    case 0:
-                        enemyList_[0].CurHp -= myHand[num - 1].Value;
-                        player_.ActionPoint -= myHand[num - 1].ActionCost;
-                        myHand.RemoveAt(num - 1);
-                        isPick = true;
-                        break;
-                    // 원거리 가장 뒷쪽 적 공격, 뒤쪽 적이 죽은 경우 앞쪽 공격
-                    case 1:
-                        enemyList_[enemyList_.Count - 1].CurHp -= myHand[num - 1].Value;
-                        player_.ActionPoint -= myHand[num - 1].ActionCost;
-                        myHand.RemoveAt(num - 1);
-                        isPick = true;
-                        break;
-                    // 범위 공격, 뒤쪽 적이 죽은 경우 앞쪽 한번 공격
-                    case 2:
-                        for (int i = 0; i < enemyList_.Count; i++)
-                        {
-                            enemyList_[i].CurHp -= myHand[num - 1].Value;
-                        }
-                        player_.ActionPoint -= myHand[num - 1].ActionCost;
-                        myHand.RemoveAt(num - 1);
-                        isPick = true;
-                        break;
-                    // 회복 혹은 기타 이득 기
-                    case 3:
-                        player_.CurHp += myHand[num - 1].Value;
-                        if (player_.CurHp > player_.MaxHp)
-                        {
-                            player_.CurHp = player_.MaxHp;
-                        }
-                        player_.ActionPoint -= myHand[num - 1].ActionCost;
-                        myHand.RemoveAt(num - 1);
-                        isPick = true;
-                        break;
+                    isMyTurn = false;
+                    return;
                 }
-            }
-            
-            
-            
-            
+
+                if (num <= myHand.Count && num > 0)
+                {
+                    discardDeck.Add(myHand[num - 1]);
+                    switch (myHand[num - 1].TargetIndex)
+                    {
+                        // 근접 가장 앞쪽 적 공격
+                        case 0:
+                            enemyList_[0].CurHp -= myHand[num - 1].Value;
+                            player_.ActionPoint -= myHand[num - 1].ActionCost;
+                            myHand.RemoveAt(num - 1);
+                            break;
+                        // 원거리 가장 뒷쪽 적 공격, 뒤쪽 적이 죽은 경우 앞쪽 공격
+                        case 1:
+                            enemyList_[enemyList_.Count - 1].CurHp -= myHand[num - 1].Value;
+                            player_.ActionPoint -= myHand[num - 1].ActionCost;
+                            myHand.RemoveAt(num - 1);
+                            break;
+                        // 범위 공격, 뒤쪽 적이 죽은 경우 앞쪽 한번 공격
+                        case 2:
+                            for (int i = 0; i < enemyList_.Count; i++)
+                            {
+                                enemyList_[i].CurHp -= myHand[num - 1].Value;
+                            }
+                            player_.ActionPoint -= myHand[num - 1].ActionCost;
+                            myHand.RemoveAt(num - 1);
+                            break;
+                        // 회복 혹은 기타 이득 기
+                        case 3:
+                            player_.CurHp += myHand[num - 1].Value;
+                            if (player_.CurHp > player_.MaxHp)
+                            {
+                                player_.CurHp = player_.MaxHp;
+                            }
+                            player_.ActionPoint -= myHand[num - 1].ActionCost;
+                            myHand.RemoveAt(num - 1);
+                            break;
+                    }
+                }
+
+            uiManager.DrawBattleScene(enemyList_);
+            uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
+            uiManager.DrawInputLog();
+            uiManager.PrintMyHand(myHand);
+            //}
+
+
+
+
+
 
         }
 
@@ -169,17 +195,17 @@ namespace PirateOutLaws
             }
         }
 
-        public void EnemyCheck(List<Enemy> enemyList_)
+        public void EnemyDieCheck(List<Enemy> enemyList_)
         {
             for(int i = enemyList_.Count - 1; i >= 0 ; i--)
             {
                 if (enemyList_[i].CurHp <= 0)
                 {
                     enemyList_.Remove(enemyList_[i]);
+                    Console.Clear();
                 }
 
             }
-            Console.Clear();
           
         }
        
