@@ -191,26 +191,26 @@ namespace ConsoleProject
         {
             for (int j = 4; j < 25; j++)
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.SetCursorPosition(2, j);
                 if (j == 4)
                 {
-                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
+                    Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
 
                 }
                 else if( j == 20)
                 {
-                    Console.WriteLine("│                 당신은 죽었습니다.                            │");
+                    Console.WriteLine("┃                    당신은 죽었습니다.                  ┃".PadRight(10));
                 }
                 else if (j == 24)
                 {
 
-                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
+                    Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 }
                 else
                 {
-                    Console.WriteLine("│                                                        │");
+                    Console.WriteLine("┃                                                        ┃");
                 }
-
 
             }
         }
@@ -226,12 +226,12 @@ namespace ConsoleProject
                 }
                 else if(j == 10)
                 {
-                    Console.WriteLine("│                 전투에서 승리하였습니다.                       │");
+                    Console.WriteLine($"│                {"전투에서 승리하였습니다.".PadRight(5)}                │");
 
                 }
                 else if(j == 11)
                 {
-                    Console.WriteLine("│                 덱에 넣을 카드를 고르세요.                       │");
+                    Console.WriteLine($"│                {"덱에 넣을 카드를 고르세요.".PadRight(5)}              │");
 
                 }
                 else if (j == 24)
@@ -356,7 +356,7 @@ namespace ConsoleProject
             for(int i = 0; i < myDeck_.Count;i++)
             {
                 Console.SetCursorPosition(65, 3 + i);
-                Console.WriteLine($"{myDeck_[i].Name,5}");
+                Console.WriteLine("{0,5}", myDeck_[i].Name);
 
             }
         }
@@ -365,6 +365,7 @@ namespace ConsoleProject
         // 손패 출력
         public void PrintMyHand(List<Card> myHand_)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             for(int i = 0; i < myHand_.Count; i++)
             {
                 for (int j = 16; j < 24; j++)
@@ -372,63 +373,70 @@ namespace ConsoleProject
                     Console.SetCursorPosition(6 + (10 * (i)), j );
                     if (j == 16)
                     {
-                        Console.WriteLine("┌── [{0}]──┐", i + 1);
-                    }
-                    else if (j == 23)
-                    {
-                        Console.WriteLine("└────────┘");
-                    }
+                        Console.WriteLine("┏━━ [{0}]━━┓", i + 1);
+                    }            
                     else if( j == 17)
                     {
-                        Console.SetCursorPosition(6 + (10 * (i)), j);
-                        Console.WriteLine("│ {0}[{1}]│", myHand_[i].Name, myHand_[i].ActionCost);
+                        Console.WriteLine("┃ {0,2}[{1,1}]┃", myHand_[i].Name, myHand_[i].ActionCost);
+                    }
+                    else if (j == 18)
+                    {
+                        Console.WriteLine($"┃  {myHand_[i].TypeName,-3}┃");
+
                     }
                     else if(j == 20)
                     {
-                        Console.SetCursorPosition(6 + (10 * (i)), j);
-                        Console.WriteLine("│    {0}   │", myHand_[i].Value);
+                        Console.WriteLine("┃  {0,3}   ┃", myHand_[i].Value);
+                    }
+                    else if (j == 23)
+                    {
+                        Console.WriteLine("┗━━━━━━━━┛");
                     }
                     else
                     {
-                        Console.WriteLine("│        │");
+                        Console.WriteLine("┃        ┃");
                                                
                     }
                 }
-            }         
+            }
+            Console.ResetColor();
         }
 
         // 승리 카드 3개
         public void PrintWinCard(List<Card> WinSelectCard)
         {
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             for (int i = 0; i < 3; i++)
             {
-                for (int j = 16; j < 24; j++)
+                for (int j = 15; j < 24; j++)
                 {
-                    Console.SetCursorPosition(6 + (10 * (i)), j);
-                    if (j == 16)
+                    Console.SetCursorPosition(13 + (11 * i) + i, j);
+                    if (j == 15)
                     {
-                        Console.WriteLine("┌── [{0}]──┐", i + 1);
+                        Console.Write("┏━━━ [{0}]━━━┓".PadRight(10), i + 1);
+                    }
+                    else if (j == 16)
+                    {
+                        Console.Write($"┃{WinSelectCard[i].Name,4}[{WinSelectCard[i].ActionCost,-1}] ┃".PadRight(10));
+                    }
+                    else if (j == 19)
+                    {
+                        Console.Write($"┃{WinSelectCard[i].Value,6}    ┃".PadRight(10));
                     }
                     else if (j == 23)
                     {
-                        Console.WriteLine("└────────┘");
-                    }
-                    else if (j == 17)
-                    {
-                        Console.SetCursorPosition(6 + (10 * (i)), j);
-                        Console.WriteLine("│ {0}[{1}]│", WinSelectCard[i].Name, WinSelectCard[i].ActionCost);
-                    }
-                    else if (j == 20)
-                    {
-                        Console.SetCursorPosition(6 + (10 * (i)), j);
-                        Console.WriteLine($"│    {WinSelectCard[i].Value,-2}  │");
-                    }
+                        Console.Write("┗━━━━━━━━━━┛".PadRight(10));
+                    }                
+                    
                     else
                     {
-                        Console.WriteLine("│        │");
+
+                        Console.Write("┃          ┃".PadRight(10));
 
                     }
+                    //Console.SetCursorPosition(50, j );
+                    //Console.WriteLine("a");
+
                 }
             }
             Console.ResetColor();
@@ -447,7 +455,7 @@ namespace ConsoleProject
                 }
                 else if(i == 26)
                 {
-                    Console.WriteLine("│  스페이스를 눌러 진행하세요                            │");
+                    Console.WriteLine($"│  {"스페이스바를 눌러 진행하세요".PadRight(10)}                          │");
                 }
                 else if (i == 28)
                 {

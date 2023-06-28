@@ -46,7 +46,7 @@ namespace ConsoleProject
             deckManager = new DeckManager();
             deckManager.InitCardDeck();
             deckManager.InitMyDeck();
-            //deckManager.InitMyHand();
+
             deckManager.InitDiscardDeck();
 
             // ui 초기화
@@ -104,9 +104,9 @@ namespace ConsoleProject
                 }
                                                 
                 uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
-
                 uiManager.DrawDeckUi(deckManager.MyDeck);
                 uiManager.DrawInputLog();
+
 
                 // 메인 씬 입력 부분
                 Console.SetCursorPosition(5, 27);
@@ -125,14 +125,17 @@ namespace ConsoleProject
                         break;
                 }
 
+                //uiManager.DrawInputLog();
+
+
                 // 패배시 게임 끝
-                if(isLose)
+                if (isLose)
                 {
                     break;
                 }
                 Console.CursorVisible = false;
 
-             
+                
             }
 
         }       //Play()
@@ -161,7 +164,7 @@ namespace ConsoleProject
                     Enemy thief = new Enemy();
                     Enemy samllThied = new Enemy();
                     enemyList = new List<Enemy>();
-                    thief.Init("도적", 5, 50, 50);
+                    thief.Init("도적", 5, 50, 50); // 5 - >임시 조정 대미지 1000
                     samllThied.Init("민첩한 도적", 7, 30, 30);
                     enemyList.Add(thief);
                     enemyList.Add(samllThied);
@@ -186,7 +189,7 @@ namespace ConsoleProject
                     Enemy wolf = new Enemy();
                     Enemy wolf1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    wolf.Init("늑대", 8, 30, 30);
+                    wolf.Init("늑대", 1000, 30, 30); // 8 - > 임시 조정 대미지 1000
                     wolf1.Init("늑대", 7, 30, 30);
                     enemyList.Add(wolf);
                     enemyList.Add(wolf1);
@@ -204,7 +207,7 @@ namespace ConsoleProject
                     Enemy zombie = new Enemy();
                     Enemy ghost1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    zombie.Init("좀비", 10, 60, 60);
+                    zombie.Init("좀비", 10, 60, 60); // 10 - >임시 조정 대미지 1000
                     ghost1.Init("원혼", 15, 20, 50);
                     enemyList.Add(zombie);
                     enemyList.Add(ghost1);
@@ -250,7 +253,7 @@ namespace ConsoleProject
 
                 bS.Battle(deckManager.MyHand, deckManager.DiscardDeck,deckManager.MyDeck, player, enemyList);
 
-                if(player.CurHp < 0)
+                if(player.CurHp == 0)
                 {
                     player.CurHp = 0;
                     Console.Clear();
@@ -261,11 +264,10 @@ namespace ConsoleProject
                 else if (!enemyList.Any() )
                 {
                     Console.Clear();
-                    uiManager.DrawWinBattleScene();
-                    uiManager.DrawInputLog();
+                    //uiManager.DrawInputLog();
 
                     // 보스 전 종료 후 카드 선택 스킵 코드
-                    if(eventCount >= bossEventCount)
+                    if (eventCount >= bossEventCount)
                     {
                         isEnd = true;
                         break;
@@ -275,10 +277,11 @@ namespace ConsoleProject
                     // 카드 덱에서 승리 카드 리스트로 3개 넣기
                     deckManager.InitWinSelectCard(deckManager.CardDeck);
 
+                    uiManager.DrawWinBattleScene();
                     // 승리 카드 3개 출력
                     uiManager.PrintWinCard(deckManager.WinSelectCard);
                     // 승리 카드 한장 획득
-                    deckManager.ChooseCard(deckManager.WinSelectCard, deckManager.MyDeck);
+                    deckManager.ChooseWinCard(deckManager.WinSelectCard, deckManager.MyDeck);
 
                     // 내 손패를 내 덱으로 보냄
                     foreach (Card card in deckManager.MyHand)
@@ -296,6 +299,8 @@ namespace ConsoleProject
                     deckManager.MyHand.Clear();
                     uiManager.DrawMainScene();
 
+                    // 탄약 풀 충전
+                    player.ActionPoint = player.MaxActionPoint; 
                     break;
                 }
 

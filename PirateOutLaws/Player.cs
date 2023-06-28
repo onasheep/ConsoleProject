@@ -15,12 +15,14 @@ namespace ConsoleProject
         public int CurHp { get; set; }
         public int ActionPoint { get; set; }
 
+        public int MaxActionPoint { get; set; }
         public Player()
         {
             Name = "포수";
             MaxHp = 250;
             CurHp = MaxHp;
-            ActionPoint = 3;
+            MaxActionPoint = 3;
+            ActionPoint = MaxActionPoint;
         }
 
  

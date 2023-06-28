@@ -13,14 +13,17 @@ namespace ConsoleProject
         public int ActionCost { get; set; }
         public int Value { get; set; }
         // 0 - 근접 1 - 원거리 2 - 범위 3 - 회복
-        public int TargetIndex { get; set; }
+        public int TypeIndex { get; set; }
 
-        public void Init(string name, int actionCost, int value, int targetIndex)
+        public string TypeName { get; set; }
+
+        public void Init(string name, int actionCost, int value, int targetIndex,string typeName)
         {
             this.Name = name;
             this.ActionCost = actionCost;
             this.Value = value;
-            this.TargetIndex = targetIndex;
+            this.TypeIndex = targetIndex;
+            this.TypeName = typeName;
         }
 
     }
