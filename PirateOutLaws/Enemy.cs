@@ -12,6 +12,7 @@ namespace PirateOutLaws
         public int Damage { get; set; }
         public int MaxHp { get; set; }
         public int CurHp { get; set; }
+        public string Type { get; set; }
 
         public void Init(string name, int damage, int maxHp, int curHp)
         {
@@ -19,6 +20,7 @@ namespace PirateOutLaws
             this.Damage = damage;
             this.MaxHp = maxHp;
             this.CurHp = maxHp;
+            this.Type = "적";
         }
 
   

@@ -14,8 +14,9 @@ namespace ConsoleProject
         public int MaxHp { get; set; }
         public int CurHp { get; set; }
         public int ActionPoint { get; set; }
-
         public int MaxActionPoint { get; set; }
+        public string Type { get; set; }
+
         public Player()
         {
             Name = "포수";
@@ -23,6 +24,7 @@ namespace ConsoleProject
             CurHp = MaxHp;
             MaxActionPoint = 3;
             ActionPoint = MaxActionPoint;
+            Type = "플레이어";
         }
 
  

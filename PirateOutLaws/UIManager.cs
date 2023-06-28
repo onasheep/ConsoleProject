@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Xml.Linq;
 
 namespace ConsoleProject
@@ -185,6 +186,34 @@ namespace ConsoleProject
                 
             }
         }
+        // 공격시 화살표로 공격 여부 보여주기
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arrowStart">내 캐릭터 앞 혹은 적 캐릭터 앞 화살표 시작지점</param>
+        /// <param name="arrowEnd">화살표 도착 지점</param>
+        public void DrawAttackArrow(int arrowStart,int arrowEnd, string Type)
+        {
+            for(int i = arrowStart; i < arrowEnd; i++)
+            {
+                Console.SetCursorPosition(i, 10);
+                Console.Write("=");
+                Thread.Sleep(100);
+            }
+            
+            Console.SetCursorPosition(arrowEnd, 10);
+            if (Type == "플레이어")
+            {
+                Console.Write(">");
+            }
+            else
+            {
+                Console.Write("<");
+            }
+
+
+        }
+
 
         // 패배 씬
         public void DrawLoseGame()
@@ -355,8 +384,11 @@ namespace ConsoleProject
           ;
             for(int i = 0; i < myDeck_.Count;i++)
             {
-                Console.SetCursorPosition(65, 3 + i);
-                Console.WriteLine("{0,5}", myDeck_[i].Name);
+                
+                Console.SetCursorPosition(64, 3);
+                Console.Write(" 이름  코스트");
+                Console.SetCursorPosition(64, 5 + i);
+                Console.Write($"{myDeck_[i].Name,-5} [{myDeck_[i].ActionCost}]");
 
             }
         }
@@ -467,5 +499,7 @@ namespace ConsoleProject
                 }
             }
         }
+
+      
     }
 }

@@ -14,7 +14,8 @@ namespace PirateOutLaws
     {
         bool isFirstTurn = default;
         bool isMyTurn = default;
-        bool isBattle = default;
+        
+
 
         UIManager uiManager;
      
@@ -22,7 +23,6 @@ namespace PirateOutLaws
         {
 
             uiManager = new UIManager();
-            isBattle = true;
             isFirstTurn = true;
             isMyTurn = true;
         }
@@ -89,18 +89,28 @@ namespace PirateOutLaws
                     ChooseCard(myDeck, myHand, discardDeck, player_, enemyList_);
                     isFirstTurn = false;
 
-                   
                 }
-
-
-               
-
 
                 // 적 공격
                 for (int i = 0; i < enemyList_.Count; i++)
                 {
                     EnemyAttack(player_, enemyList_[i]);
-
+                    if (i == 0)
+                    {
+                        Console.CursorVisible = false;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        uiManager.DrawAttackArrow(40, 15, "적");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Console.CursorVisible = false;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        uiManager.DrawAttackArrow(45, 15, "적");
+                        Console.ResetColor();
+                        Thread.Sleep(1000);
+                    }
                 }
 
                 if(player_.CurHp <= 0)
@@ -108,14 +118,8 @@ namespace PirateOutLaws
                     player_.CurHp = 0;
                     break;
                 }
-
-             
-
+            
             }
-
-
-
-
 
         }
 
@@ -176,12 +180,38 @@ namespace PirateOutLaws
                             enemyList_[0].CurHp -= myHand[num - 1].Value;
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
                             myHand.RemoveAt(num - 1);
+
+                            // 공격 대상에 따라 화살표 표시
+                            Console.CursorVisible = false;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            uiManager.DrawAttackArrow(15,25, "플레이어");
+                            Console.ResetColor();
+                            Thread.Sleep(1000);
                             break;
                         // 원거리 가장 뒷쪽 적 공격, 뒤쪽 적이 죽은 경우 앞쪽 공격
                         case 1:
                             enemyList_[enemyList_.Count - 1].CurHp -= myHand[num - 1].Value;
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
                             myHand.RemoveAt(num - 1);
+                            // 공격 대상에 따라 화살표 표시
+                            // 뒤에 적이 죽었을 떄 화살표 
+                            if(enemyList_.Count == 1)
+                            {
+                                Console.CursorVisible = false;
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                uiManager.DrawAttackArrow(15, 25, "플레이어");
+                                Console.ResetColor();
+                                Thread.Sleep(1000);
+                            }
+                            // 뒤에 적이 남아있을 떄 화살표
+                            else
+                            {
+                                Console.CursorVisible = false;
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                uiManager.DrawAttackArrow(15, 45, "플레이어");
+                                Console.ResetColor();
+                                Thread.Sleep(1000);
+                            }                        
                             break;
                         // 범위 공격, 뒤쪽 적이 죽은 경우 앞쪽 한번 공격
                         case 2:

@@ -58,23 +58,20 @@ namespace ConsoleProject
             for (int i = 0; i < 2; i++)
             {
                 Card bullet = new Card();
-                bullet.Init("　탄약", 0, 1, 4,"보급　");
+                bullet.Init("　탄약", 0, 1, 4, "보급　");
                 MyDeck.Add(bullet);
             }
 
-            for(int i = 0; i < 2; i++)
-            {
-                Card slash = new Card();
-                slash.Init("　베기", 0, 8, 0, "근접　");
-                MyDeck.Add(slash);
-            }
-           
+
+            Card slash = new Card();
+            slash.Init("　베기", 0, 8, 0, "근접　");
+            MyDeck.Add(slash);
 
 
             for (int i = 0; i < 2; i++)
             {
                 Card shot = new Card();
-                shot.Init("　사격", 1, 10, 1,"원거리");
+                shot.Init("　사격", 1, 10, 1, "원거리");
                 MyDeck.Add(shot);
 
             }
@@ -88,6 +85,9 @@ namespace ConsoleProject
             fist.Init("　주먹", 0, 6, 0, "근접　");
             MyDeck.Add(fist);
 
+            Card doubleShot = new Card();
+            doubleShot.Init("더블샷", 2, 18, 1, "원거리");
+            MyDeck.Add(doubleShot);
 
             //Card food = new Card();
             //food.Init("　식량", 1, 30, 3,"회복　");

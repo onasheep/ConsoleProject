@@ -139,7 +139,7 @@ namespace PirateOutLaws
                 Console.WriteLine("{0}", qL.eventDic[9].dialog[i]);
                 Console.SetCursorPosition(5, 6 + i);
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"[{myDeck_[randNum - 1].Name,-1}　]카드가 제거 되었습니다." );
+                Console.WriteLine($"[{myDeck_[randNum - 1].Name,-2}　]카드가 제거 되었습니다." );
                 Console.ResetColor();
             }
             myDeck_.RemoveAt(randNum - 1);
