@@ -162,7 +162,8 @@ namespace ConsoleProject
                     Thread.Sleep(30);
                 }
                 Console.SetCursorPosition(arrowEnd, 10);
-                Console.Write(">");
+                Console.Write("▷");
+                
             }
             else if(Type == "적")
             {
@@ -174,8 +175,15 @@ namespace ConsoleProject
                 }
                 Console.SetCursorPosition(arrowStart - 1, 10);
 
-                Console.Write("<");
+                Console.Write("◁");
             }
+        }
+
+        public void PrintDamage(int damage, int pos)
+        {
+            Console.SetCursorPosition(pos, 13);
+            Console.Write($"{damage}");
+            
         }
 
         public void Print_RangeEffect(int enemyPos)

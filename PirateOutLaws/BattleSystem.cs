@@ -91,6 +91,9 @@ namespace PirateOutLaws
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         uiManager.Print_AttackArrow(17, 34, "적");
                         Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        uiManager.PrintDamage(enemyList_[0].Damage, 15);
+                        Console.ResetColor();
                         Thread.Sleep(800);
                     }
                     else
@@ -98,6 +101,9 @@ namespace PirateOutLaws
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         uiManager.Print_AttackArrow(17, 47, "적");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        uiManager.PrintDamage(enemyList_[1].Damage, 15);
                         Console.ResetColor();
                         Thread.Sleep(800);
                     }
@@ -176,39 +182,50 @@ namespace PirateOutLaws
                         case 0:
                             enemyList_[0].CurHp -= myHand[num - 1].Value;
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
-                            myHand.RemoveAt(num - 1);
 
                             // 공격 대상에 따라 화살표 표시
                             Console.CursorVisible = false;
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            uiManager.Print_AttackArrow(18,35, "플레이어");
+                            uiManager.Print_AttackArrow(18,33, "플레이어");
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            uiManager.PrintDamage(myHand[num - 1].Value, 35);
                             Console.ResetColor();
                             Thread.Sleep(1000);
+                            myHand.RemoveAt(num - 1);
+
                             break;
                         // 원거리 가장 뒷쪽 적 공격, 뒤쪽 적이 죽은 경우 앞쪽 공격
                         case 1:
                             enemyList_[enemyList_.Count - 1].CurHp -= myHand[num - 1].Value;
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
-                            myHand.RemoveAt(num - 1);
                             // 공격 대상에 따라 화살표 표시
                             // 뒤에 적이 죽었을 떄 화살표 
                             if(enemyList_.Count == 1)
                             {
                                 Console.CursorVisible = false;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                uiManager.Print_AttackArrow(18, 35, "플레이어");
+                                uiManager.Print_AttackArrow(18, 33, "플레이어");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                uiManager.PrintDamage(myHand[num - 1].Value, 35);
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
+                                myHand.RemoveAt(num - 1);
                             }
                             // 뒤에 적이 남아있을 떄 화살표
                             else
                             {
                                 Console.CursorVisible = false;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                uiManager.Print_AttackArrow(18, 48, "플레이어");
+                                uiManager.Print_AttackArrow(18, 46, "플레이어");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                uiManager.PrintDamage(myHand[num - 1].Value, 48);
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
-                            }                        
+                                myHand.RemoveAt(num - 1);
+                            }
                             break;
                         // 범위 공격, 뒤쪽 적이 죽은 경우 앞쪽 한번 공격
                         case 2:
@@ -223,6 +240,11 @@ namespace PirateOutLaws
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             uiManager.Print_RangeEffect(35);
                             uiManager.Print_RangeEffect(48);
+                         
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            uiManager.PrintDamage(myHand[num - 1].Value, 35);
+                            uiManager.PrintDamage(myHand[num - 1].Value, 48);
                             Console.ResetColor();
                             Thread.Sleep(1000);
 
@@ -336,17 +358,21 @@ namespace PirateOutLaws
             Random rand = new Random();
             int plus_Minus = rand.Next(0, 2); 
 
-            int damageRange = rand.Next(0, 5);
+            int damageRange = rand.Next(0, enemy_.Damage / 5);
             
             switch(plus_Minus)
             {
                 // 대미지 증가
                 case 0:
-                    player_.CurHp -= (enemy_.Damage + damageRange );
+                    enemy_.Damage -= damageRange;
+                    player_.CurHp -= enemy_.Damage;
+                    enemy_.Damage += damageRange;
                     break;
                 // 대미지 감소
                 case 1:
-                    player_.CurHp -= (enemy_.Damage - damageRange);
+                    enemy_.Damage += damageRange;
+                    player_.CurHp -= enemy_.Damage;
+                    enemy_.Damage -= damageRange;
                     break;
             }
 
