@@ -151,7 +151,7 @@ namespace ConsoleProject
         /// </summary>
         /// <param name="arrowStart">내 캐릭터 앞 혹은 적 캐릭터 앞 화살표 시작지점</param>
         /// <param name="arrowEnd">화살표 도착 지점</param>
-        public void DrawAttackArrow(int arrowStart,int arrowEnd, string Type)
+        public void Print_AttackArrow(int arrowStart,int arrowEnd, string Type)
         {
             if(Type == "플레이어")
             {
@@ -178,7 +178,7 @@ namespace ConsoleProject
             }
         }
 
-        public void RangeAttackEffect(int enemyPos)
+        public void Print_RangeEffect(int enemyPos)
         {
             for(int i = 5; i < 9; i ++)
             {
@@ -266,19 +266,18 @@ namespace ConsoleProject
                     Console.WriteLine("┌────────────────────────────────────────────────────────┐");
 
                 }
-                else if (j == 10)
+                else if (j == 20)
                 {
-                    Console.WriteLine("│                 당신은 여정의 끝에서 보물을 얻어냈습니다.    │");
+                    Console.WriteLine("│    당신은 여정의 끝에서 보물을 얻어냈습니다.           │");
 
                 }
-                else if (j == 11)
+                else if (j == 21)
                 {
-                    Console.WriteLine("│                 당신이 얻은 결과가 우연일수도 실력일 수도 있지만     │");
-
+                    Console.WriteLine("│    당신이 얻은 결과가 우연일수도 실력일 수도 있지만    │");
                 }
-                else if( j == 12)
+                else if( j == 22)
                 {
-                    Console.WriteLine("│                 보물을 얻을 자격은 충분해 보입니다.       │");
+                    Console.WriteLine("│    보물을 얻을 자격은 충분해 보입니다.                 │");
                 }
                 else if (j == 24)
                 {
@@ -304,12 +303,12 @@ namespace ConsoleProject
                     Console.WriteLine("┌────────────────────────────────────────────────────────┐");
 
                 }
-                else if (j == 10)
+                else if (j == 21)
                 {
-                    Console.WriteLine("│                The End.                 │");
+                    Console.WriteLine("│                         The End.                       │");
 
                 }
-               
+
                 else if (j == 24)
                 {
                     Console.SetCursorPosition(2, j);

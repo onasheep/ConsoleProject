@@ -77,7 +77,7 @@ namespace ConsoleProject
             }
 
             Card supply = new Card();
-            supply.Init("재보급", 2, 2, 5, "드로우");
+            supply.Init("재보급", 2, 3, 5, "드로우");
             MyDeck.Add(supply);
 
 
@@ -90,7 +90,7 @@ namespace ConsoleProject
             MyDeck.Add(doubleShot);
 
             //Card food = new Card();
-            //food.Init("　식량", 1, 30, 3,"회복　");
+            //food.Init("　식량", 1, 50, 3, "회복　");
             //MyDeck.Add(food);
             // 광역공격 테스트 용
             Card food = new Card();

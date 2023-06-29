@@ -91,7 +91,7 @@ namespace ConsoleProject
 
 
                 // 마지막 보스 이벤트 제외 - 1
-                int randNum = rand.Next(0, eL.eventList.Count-1);
+                int randNum = rand.Next(0, eL.eventList.Count - 1);
 
                 // 이벤트 출력시 +1
                 eventCount += 1;
@@ -148,7 +148,7 @@ namespace ConsoleProject
             if(eventCount >= bossEventCount)
             {
                 // 강제로 10번 으로
-                eventKey = 10;
+                eventKey = 20;
             }
             switch (eventKey)
             {
@@ -222,6 +222,10 @@ namespace ConsoleProject
                     eM.CurseQuest(deckManager.MyDeck);
                     break;
                 case 10:
+                    eM.CursedGunQuest(player);
+                    uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
+                    break;
+                case 20:
                     eM.BossQuest();
 
                     Thread.Sleep(1500);

@@ -59,7 +59,7 @@ namespace PirateOutLaws
                 Console.WriteLine("{0}", qL.eventDic[3].dialog[i]);
 
             }
-            player_.CurHp += 20;
+            player_.CurHp += 40;
             if (player_.CurHp > player_.MaxHp)
             {
                 player_.CurHp = player_.MaxHp;
@@ -74,12 +74,12 @@ namespace PirateOutLaws
             {
                 Console.SetCursorPosition(5, 5 + i);
                 Console.WriteLine("{0}", qL.eventDic[4].dialog[i]);
-                Console.SetCursorPosition(5, 6 + i);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"[{cardDeck_[randNum - 1].Name,-1}　]카드를 얻었습니다.");
-                Console.ResetColor();
+               
             }
-
+            Console.SetCursorPosition(5, 5 + qL.eventDic[4].dialog.Count);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"[{cardDeck_[randNum - 1].Name,-1}　]카드를 얻었습니다.");
+            Console.ResetColor();
             myDeck_.Add(cardDeck_[randNum - 1]);
                                                                                    
             
@@ -124,8 +124,8 @@ namespace PirateOutLaws
                 Console.SetCursorPosition(5, 5 + i);
                 Console.WriteLine("{0}", qL.eventDic[8].dialog[i]);
             }
-            player_.CurHp += 10;
-            player_.MaxHp += 10;
+            player_.CurHp += 20;
+            player_.MaxHp += 20;
         }
 
         // 저주 퀘스트
@@ -137,13 +137,45 @@ namespace PirateOutLaws
             {
                 Console.SetCursorPosition(5, 5 + i);
                 Console.WriteLine("{0}", qL.eventDic[9].dialog[i]);
-                Console.SetCursorPosition(5, 6 + i);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"[{myDeck_[randNum - 1].Name,-2}　]카드가 제거 되었습니다." );
-                Console.ResetColor();
+       
             }
+            Console.SetCursorPosition(5, 5 + qL.eventDic[9].dialog.Count);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"[{myDeck_[randNum - 1].Name,-2}　]카드가 제거 되었습니다.");
+            Console.ResetColor();
             myDeck_.RemoveAt(randNum - 1);
         }
+        // 저주 받은 총 퀘스트
+        public void CursedGunQuest(Player player_)
+        {
+            for(int i = 0; i < qL.eventDic[10].dialog.Count; i++)
+            {
+                Console.SetCursorPosition(5, 5 + i);
+                Console.WriteLine("{0}", qL.eventDic[10].dialog[i]);
+            
+            }
+            Console.SetCursorPosition(5, 5 + qL.eventDic[10].dialog.Count);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("최대 탄약이 1 증가합니다.");
+            Console.ResetColor();
+            Console.SetCursorPosition(5, 6 + qL.eventDic[10].dialog.Count);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("최대 체력이 10 감소합니다.");
+            Console.ResetColor();
+
+            
+            player_.MaxHp -= 10;
+            if(player_.MaxHp < player_.CurHp )
+            {
+                player_.CurHp = player_.MaxHp;
+            }
+            player_.MaxActionPoint += 1;
+            player_.ActionPoint = player_.MaxActionPoint;
+        
+            
+            
+        }
+
 
 
         // 보스 퀘스트

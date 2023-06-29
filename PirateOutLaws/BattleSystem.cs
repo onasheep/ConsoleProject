@@ -89,7 +89,7 @@ namespace PirateOutLaws
                     {
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        uiManager.DrawAttackArrow(17, 34, "적");
+                        uiManager.Print_AttackArrow(17, 34, "적");
                         Console.ResetColor();
                         Thread.Sleep(800);
                     }
@@ -97,7 +97,7 @@ namespace PirateOutLaws
                     {
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        uiManager.DrawAttackArrow(17, 47, "적");
+                        uiManager.Print_AttackArrow(17, 47, "적");
                         Console.ResetColor();
                         Thread.Sleep(800);
                     }
@@ -181,7 +181,7 @@ namespace PirateOutLaws
                             // 공격 대상에 따라 화살표 표시
                             Console.CursorVisible = false;
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            uiManager.DrawAttackArrow(18,35, "플레이어");
+                            uiManager.Print_AttackArrow(18,35, "플레이어");
                             Console.ResetColor();
                             Thread.Sleep(1000);
                             break;
@@ -196,7 +196,7 @@ namespace PirateOutLaws
                             {
                                 Console.CursorVisible = false;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                uiManager.DrawAttackArrow(18, 35, "플레이어");
+                                uiManager.Print_AttackArrow(18, 35, "플레이어");
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
                             }
@@ -205,7 +205,7 @@ namespace PirateOutLaws
                             {
                                 Console.CursorVisible = false;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                uiManager.DrawAttackArrow(18, 48, "플레이어");
+                                uiManager.Print_AttackArrow(18, 48, "플레이어");
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
                             }                        
@@ -221,8 +221,8 @@ namespace PirateOutLaws
 
                             Console.CursorVisible = false;
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            uiManager.RangeAttackEffect(35);
-                            uiManager.RangeAttackEffect(48);
+                            uiManager.Print_RangeEffect(35);
+                            uiManager.Print_RangeEffect(48);
                             Console.ResetColor();
                             Thread.Sleep(1000);
 

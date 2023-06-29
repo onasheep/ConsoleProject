@@ -17,10 +17,11 @@ namespace ConsoleProject
         public int MaxActionPoint { get; set; }
         public string Type { get; set; }
 
+  
         public Player()
         {
             Name = "포수";
-            MaxHp = 250;
+            MaxHp = 300;
             CurHp = MaxHp;
             MaxActionPoint = 3;
             ActionPoint = MaxActionPoint;

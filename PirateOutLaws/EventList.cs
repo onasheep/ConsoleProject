@@ -47,13 +47,14 @@ namespace PirateOutLaws
             dialog = new List<string>();
             dialog.Add("버려진 집을 발견했습니다.");
             dialog.Add("하룻밤을 보내기에는 충분해 보입니다.");
-            dialog.Add("체력이 20 증가했습니다.");
+            dialog.Add("체력이 40 증가했습니다.");
             innQuest.Init(dialog, false, 3);
 
             // 보물 퀘스트 Test
             Event treasureQuest = new Event();
             dialog = new List<string>();
-            dialog.Add("바닥에 X자 표시를 발견했습니다.");
+            dialog.Add("당신은 해변가를 걷고 있습니다.");
+            dialog.Add("해변가 바닥에서 X자 표시를 발견했습니다.");
             dialog.Add("X자 표시를 파냈더니 카드 한장을 얻습니다.");
             treasureQuest.Init(dialog, false, 4);
 
@@ -87,9 +88,10 @@ namespace PirateOutLaws
             dialog = new List<string>();
             dialog.Add("당신은 부상을 입은 야생 동물을 발견했습니다.");
             dialog.Add("집중한 당신은 손쉽게 야생 동물을 사냥했습니다.");
-            dialog.Add("최대 체력과 현재 체력이 10씩 증가합니다.");
+            dialog.Add("최대 체력과 현재 체력이 20씩 증가합니다.");
             huntQuest.Init(dialog, false, 8);
 
+            // 저주 퀘스트
             Event curseQuest = new Event();
             dialog = new List<string>();
             dialog.Add("당신은 의미심장한 석상을 발견했습니다.");
@@ -97,6 +99,20 @@ namespace PirateOutLaws
             dialog.Add("석상의 저주를 받아 덱에서 카드 한장을 잃습니다.");
             curseQuest.Init(dialog, false, 9);
 
+            // 저주 받은 총 퀘스트
+            Event cursedGunQuest = new Event();
+            dialog = new List<string>();
+            dialog.Add("당신은 암시장을 발견했습니다.");
+            dialog.Add("의심스러운 상인이 당신을 바라봅니다.");
+            dialog.Add("상인은 당신에게 총을 건네며,");
+            dialog.Add("이 총은 당신을 위한 것이라 말합니다.");
+            dialog.Add("당신은 총을 받고 불긴함을 느낍니다.");
+            cursedGunQuest.Init(dialog, false, 10);
+
+
+
+
+            // 보스 퀘스트
             Event bossQuest = new Event();
             dialog = new List<string>();
             dialog.Add("당신은 여정의 끝에 도달했습니다.");
@@ -117,7 +133,8 @@ namespace PirateOutLaws
             eventDic.Add(7, ruinQuest);
             eventDic.Add(8, huntQuest);
             eventDic.Add(9, curseQuest);
-            eventDic.Add(10, bossQuest);
+            eventDic.Add(10, cursedGunQuest);
+            eventDic.Add(11, bossQuest);
 
 
 
