@@ -54,6 +54,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="EventList.cs" />
     <Compile Include="EventManager.cs" />
+    <Compile Include="Relic.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="UIManager.cs" />
   </ItemGroup>

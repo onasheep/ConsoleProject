@@ -26,6 +26,7 @@ namespace ConsoleProject
 
         EventManager eM;
 
+        Relic relic;
 
         // 전투 패배 체크
         bool isLose = false;
@@ -67,6 +68,9 @@ namespace ConsoleProject
             bS = new BattleSystem();
 
             rand = new Random();
+
+            // 유물 시스템 초기화
+           
 
         }       //Init()
 

@@ -181,10 +181,10 @@ namespace PirateOutLaws
         // 보스 퀘스트
         public void BossQuest()
         {
-            for (int i = 0; i < qL.eventDic[10].dialog.Count; i++)
+            for (int i = 0; i < qL.eventDic[qL.eventDic.Count - 1].dialog.Count; i++)
             {
                 Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[10].dialog[i]);
+                Console.WriteLine("{0}", qL.eventDic[qL.eventDic.Count - 1].dialog[i]);
             }
         }
     }
