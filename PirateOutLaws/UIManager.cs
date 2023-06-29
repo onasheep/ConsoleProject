@@ -198,7 +198,7 @@ namespace ConsoleProject
             {
                 Console.SetCursorPosition(i, 10);
                 Console.Write("=");
-                Thread.Sleep(100);
+                Thread.Sleep(40);
             }
             
             Console.SetCursorPosition(arrowEnd, 10);

@@ -70,16 +70,16 @@ namespace PirateOutLaws
 
 
                 // 내 덱이 0개가 되면 버림패를 덱으로 가져옴
-                if (!myDeck.Any())
-                {
-                    foreach (Card card in discardDeck)
-                    {
-                        myDeck.Add(card);
-                    }
-                    discardDeck.Clear();
-                    uiManager.DrawDeckUi(myDeck);
+                //if (!myDeck.Any())
+                //{
+                //    foreach (Card card in discardDeck)
+                //    {
+                //        myDeck.Add(card);
+                //    }
+                //    discardDeck.Clear();
+                //    uiManager.DrawDeckUi(myDeck);
 
-                }
+                //}
                 // 플레이어 공격 
           
                 while (isMyTurn)
@@ -291,6 +291,18 @@ namespace PirateOutLaws
             Random rand = new Random();
             int drawNum = rand.Next(0, myDeck_.Count);
 
+            // 내 덱이 없을 때 버림 덱을 내 덱으로 가져옴
+            if (!myDeck_.Any())
+            {
+                foreach (Card card in discardDeck_)
+                {
+                    myDeck_.Add(card);
+                }
+                discardDeck_.Clear();
+                uiManager.DrawDeckUi(myDeck_);
+
+            }
+
             if (myHand_.Count >= 5)
             {
                 uiManager.DrawInputLog();
@@ -304,6 +316,7 @@ namespace PirateOutLaws
                 myDeck_.Remove(myDeck_[drawNum]);
                 return;
             }
+           
             myHand_.Add(myDeck_[drawNum]);
             myDeck_.Remove(myDeck_[drawNum]);
         }
