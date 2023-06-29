@@ -142,6 +142,9 @@ namespace ConsoleProject
                 
             }
         }
+
+
+        #region Battle Effect
         // 공격시 화살표로 공격 여부 보여주기
         /// <summary>
         /// 
@@ -160,7 +163,6 @@ namespace ConsoleProject
                 }
                 Console.SetCursorPosition(arrowEnd, 10);
                 Console.Write(">");
-
             }
             else if(Type == "적")
             {
@@ -174,10 +176,21 @@ namespace ConsoleProject
 
                 Console.Write("<");
             }
+        }
 
-
+        public void RangeAttackEffect(int enemyPos)
+        {
+            for(int i = 5; i < 9; i ++)
+            {
+                Console.SetCursorPosition(enemyPos, i);
+                Console.Write("＊");
+                Thread.Sleep(30);
+            }
+            Console.SetCursorPosition(enemyPos, 10);
+            Console.Write("※");
 
         }
+        #endregion
 
 
         // 패배 씬

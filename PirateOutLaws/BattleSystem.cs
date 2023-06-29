@@ -68,18 +68,7 @@ namespace PirateOutLaws
                 }
 
 
-
-                // 내 덱이 0개가 되면 버림패를 덱으로 가져옴
-                //if (!myDeck.Any())
-                //{
-                //    foreach (Card card in discardDeck)
-                //    {
-                //        myDeck.Add(card);
-                //    }
-                //    discardDeck.Clear();
-                //    uiManager.DrawDeckUi(myDeck);
-
-                //}
+            
                 // 플레이어 공격 
           
                 while (isMyTurn)
@@ -226,8 +215,17 @@ namespace PirateOutLaws
                             for (int i = 0; i < enemyList_.Count; i++)
                             {
                                 enemyList_[i].CurHp -= myHand[num - 1].Value;
+                                
                             }
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
+
+                            Console.CursorVisible = false;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            uiManager.RangeAttackEffect(35);
+                            uiManager.RangeAttackEffect(48);
+                            Console.ResetColor();
+                            Thread.Sleep(1000);
+
                             myHand.RemoveAt(num - 1);
                             break;
                         // 회복 혹은 기타 이득 기
