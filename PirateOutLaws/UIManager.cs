@@ -94,7 +94,7 @@ namespace ConsoleProject
                 }
                 else if (j == 24)
                 {
-                    Console.SetCursorPosition(2, j);
+                    //Console.SetCursorPosition(2, j);
 
                     Console.WriteLine("└────────────────────────────────────────────────────────┘");
                 }
@@ -107,80 +107,36 @@ namespace ConsoleProject
             }
         }
 
-        // 퀘스트 로그 출력
-        public void PrintQuestLog(EventList qm, int questIndex)
-        {
-
-
-            for (int j = 0; j < qm.eventList[questIndex].dialog.Count; j++)
-            {
-                Console.SetCursorPosition(5, 5 + j);
-                Console.WriteLine("{0}", qm.eventList[questIndex].dialog[j]);
-
-            }
-        }
 
         // 배틀씬 
-        public void DrawBattleScene(List<Enemy> enemyList_)
+        public void DrawBattleScene()
         {
+            Console.Clear();
             for (int j = 4; j < 25; j++)
             {
                 Console.SetCursorPosition(2, j);
                 if (j == 4)
                 {
-                    Console.Write("┌────────────────────────────────────────────────────────┐");
+                    Console.Write("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
 
                 }
                 else if(j == 5)
                 {
-                    Console.Write("│                                                        │");
-                }
-                else if(j == 6)
-                {
-                    Console.Write($"│                     ");
-
-                    for (int i = 0; i < enemyList_.Count;i++)
-                    {
-                        Console.Write($"{enemyList_[i].Name, 6}     ");
-                    }
-                    Console.Write($"         │");
-
-                }
-                else if (j == 7)
-                {
-                    Console.Write($"│                       ");
-                    for (int i = 0; i < enemyList_.Count; i++)
-                    {
-                        Console.Write($"{enemyList_[i].CurHp}/{enemyList_[i].MaxHp}");
-                        Console.Write("           ");
-                    }
-                    Console.Write($"");
-
-                }
-                else if (j == 10)
-                {
-                    Console.Write($"│           {"&",-6}     ");
-
-                    for (int i = 0; i <enemyList_.Count;i++)
-                    {
-                        Console.Write($"{"#",10}  ");
-                        
-                    }
+                    Console.Write("┃                                                        ┃");
                 }
                 else if(j == 15)
                 {
-                    Console.Write("├────────────────────────────────────────────────────────┤");
+                    Console.Write("┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫");
 
                 }
                 else if (j == 24)
                 {
-                    Console.SetCursorPosition(2, j);
 
-                    Console.Write("└────────────────────────────────────────────────────────┘");
+                    Console.Write("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 }
                 else
                 {
-                    Console.Write("│                                                        │");
+                    Console.Write("┃                                                        ┃");
                 }
 
                 
@@ -194,22 +150,31 @@ namespace ConsoleProject
         /// <param name="arrowEnd">화살표 도착 지점</param>
         public void DrawAttackArrow(int arrowStart,int arrowEnd, string Type)
         {
-            for(int i = arrowStart; i < arrowEnd; i++)
+            if(Type == "플레이어")
             {
-                Console.SetCursorPosition(i, 10);
-                Console.Write("=");
-                Thread.Sleep(40);
-            }
-            
-            Console.SetCursorPosition(arrowEnd, 10);
-            if (Type == "플레이어")
-            {
+                for (int i = arrowStart; i < arrowEnd; i++)
+                {
+                    Console.SetCursorPosition(i, 10);
+                    Console.Write("=");
+                    Thread.Sleep(30);
+                }
+                Console.SetCursorPosition(arrowEnd, 10);
                 Console.Write(">");
+
             }
-            else
+            else if(Type == "적")
             {
+                for (int i = arrowEnd - 1; i >= arrowStart; i--)
+                {
+                    Console.SetCursorPosition(i, 10);
+                    Console.Write("=");
+                    Thread.Sleep(30);
+                }
+                Console.SetCursorPosition(arrowStart - 1, 10);
+
                 Console.Write("<");
             }
+
 
 
         }
@@ -376,7 +341,31 @@ namespace ConsoleProject
             }
         }
 
-   
+        //입력 창 출력
+        public void DrawInputLog()
+        {
+            for (int i = 25; i < 29; i++)
+            {
+                Console.SetCursorPosition(2, i);
+                if (i == 25)
+                {
+                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
+                }
+                else if (i == 26)
+                {
+                    Console.WriteLine($"│  {"스페이스바를 눌러 진행하세요".PadRight(10)}                          │");
+                }
+                else if (i == 28)
+                {
+                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
+                }
+                else
+                {
+                    Console.WriteLine("│                                                        │");
+                }
+            }
+        }
+
 
         // 현재 덱 목록 출력
         public void PrintMyDeck(List<Card> myDeck_)
@@ -432,7 +421,7 @@ namespace ConsoleProject
                 }
             }
             Console.ResetColor();
-        }
+        }       // printMyHand()
 
         // 승리 카드 3개
         public void PrintWinCard(List<Card> WinSelectCard)
@@ -472,32 +461,58 @@ namespace ConsoleProject
                 }
             }
             Console.ResetColor();
-        }
+        }       // PrintWinCard()
 
-       
-        //입력 창 출력
-        public void DrawInputLog()
+        // 퀘스트 로그 출력
+        public void PrintQuestLog(EventList qm, int questIndex)
         {
-            for (int i = 25; i < 29; i++)
+
+
+            for (int j = 0; j < qm.eventList[questIndex].dialog.Count; j++)
             {
-                Console.SetCursorPosition(2, i);
-                if (i == 25)
-                {
-                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
-                }
-                else if(i == 26)
-                {
-                    Console.WriteLine($"│  {"스페이스바를 눌러 진행하세요".PadRight(10)}                          │");
-                }
-                else if (i == 28)
-                {
-                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
-                }
-                else
-                {
-                    Console.WriteLine("│                                                        │");
-                }
+                Console.SetCursorPosition(5, 5 + j);
+                Console.WriteLine("{0}", qm.eventList[questIndex].dialog[j]);
+
             }
+        }
+       
+        public void PrintBattleIcon(List<Enemy> enemyList_)
+        {
+            //플레이어 아이콘
+            Console.SetCursorPosition(15, 10);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("ⓟ");
+            Console.ResetColor();
+
+
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            for (int i = 0; i < enemyList_.Count; i++)
+            {
+                Console.SetCursorPosition(35 + (i * 13), 10);
+                Console.Write("ⓔ");
+
+            }
+            Console.ResetColor();
+
+            Console.SetCursorPosition(20, 6);
+            for (int i = 0; i < enemyList_.Count; i++)
+            {
+                Console.SetCursorPosition(35 + (i * 13), 6);
+                Console.Write($"{enemyList_[i].Name}");
+            }
+
+
+            Console.SetCursorPosition(20, 7);
+            for (int i = 0; i < enemyList_.Count; i++)
+            {
+                Console.SetCursorPosition(35 + (i * 13), 7);
+
+                Console.Write($"{enemyList_[i].CurHp} /{enemyList_[i].MaxHp}");
+            }
+
+
+           
         }
 
       

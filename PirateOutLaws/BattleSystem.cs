@@ -94,23 +94,31 @@ namespace PirateOutLaws
                 // 적 공격
                 for (int i = 0; i < enemyList_.Count; i++)
                 {
+                    
                     EnemyAttack(player_, enemyList_[i]);
                     if (i == 0)
                     {
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        uiManager.DrawAttackArrow(40, 15, "적");
+                        uiManager.DrawAttackArrow(17, 34, "적");
                         Console.ResetColor();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(800);
                     }
                     else
                     {
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        uiManager.DrawAttackArrow(45, 15, "적");
+                        uiManager.DrawAttackArrow(17, 47, "적");
                         Console.ResetColor();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(800);
                     }
+                    Console.Clear();
+                    uiManager.DrawBattleScene();
+                    uiManager.PrintBattleIcon(enemyList_);
+                    uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
+                    uiManager.DrawInputLog();
+                    uiManager.DrawDeckUi(myDeck);
+                    uiManager.PrintMyHand(myHand);
                 }
 
                 if(player_.CurHp <= 0)
@@ -184,7 +192,7 @@ namespace PirateOutLaws
                             // 공격 대상에 따라 화살표 표시
                             Console.CursorVisible = false;
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            uiManager.DrawAttackArrow(15,25, "플레이어");
+                            uiManager.DrawAttackArrow(18,35, "플레이어");
                             Console.ResetColor();
                             Thread.Sleep(1000);
                             break;
@@ -199,7 +207,7 @@ namespace PirateOutLaws
                             {
                                 Console.CursorVisible = false;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                uiManager.DrawAttackArrow(15, 25, "플레이어");
+                                uiManager.DrawAttackArrow(18, 35, "플레이어");
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
                             }
@@ -208,7 +216,7 @@ namespace PirateOutLaws
                             {
                                 Console.CursorVisible = false;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                uiManager.DrawAttackArrow(15, 45, "플레이어");
+                                uiManager.DrawAttackArrow(18, 48, "플레이어");
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
                             }                        
@@ -267,7 +275,8 @@ namespace PirateOutLaws
                     return;
                 }
 
-                uiManager.DrawBattleScene(enemyList_);
+                uiManager.DrawBattleScene();
+                uiManager.PrintBattleIcon(enemyList_);
                 uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
                 uiManager.DrawInputLog();
                 uiManager.DrawDeckUi(myDeck);
@@ -342,6 +351,7 @@ namespace PirateOutLaws
                     player_.CurHp -= (enemy_.Damage - damageRange);
                     break;
             }
+
         }
 
         public void EnemyDieCheck(List<Enemy> enemyList_)

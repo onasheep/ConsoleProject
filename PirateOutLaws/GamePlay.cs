@@ -244,7 +244,8 @@ namespace ConsoleProject
             while (true)
             {
 
-                uiManager.DrawBattleScene(enemyList);
+                uiManager.DrawBattleScene();
+                uiManager.PrintBattleIcon(enemyList);
                 uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
                 uiManager.DrawInputLog();
                 uiManager.DrawDeckUi(deckManager.MyDeck);
