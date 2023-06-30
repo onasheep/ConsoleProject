@@ -36,7 +36,7 @@ namespace ConsoleProject
         bool isFirstEvent = true;
         // 보스전 까지 체크
         int eventCount = 0;
-        int bossEventCount = 9;
+        int bossEventCount = 11;
 
 
         Random rand;
@@ -81,14 +81,14 @@ namespace ConsoleProject
 
 
             uiManager.DrawTitleScene();
-            uiManager.DrawMainScene();
+            uiManager.DrawMainScene(eventCount,bossEventCount);
             uiManager.DrawStatUI(player);
             uiManager.DrawDeckUi(deckManager.MyDeck);
             uiManager.DrawInputLog();
 
             while (true)
             {
-                if(isEnd)
+                if (isEnd)
                 {
                     break;
                 }
@@ -96,35 +96,36 @@ namespace ConsoleProject
 
 
 
-                 //마지막 보스 이벤트 제외 - 1 Test
+                //마지막 보스 이벤트 제외 - 1 Test
                 int randNum = rand.Next(0, eL.eventList.Count - 1);
 
-                
 
 
                 // 이벤트 출력시 +1
                 eventCount += 1;
                 // 첫 이벤트만 강제 출력
-                
+
                 if (isFirstEvent)
                 {
                     eM.IntroQuest();
                     isFirstEvent = false;
                 }
-                                                
+
                 uiManager.DrawStatUI(player);
                 uiManager.DrawDeckUi(deckManager.MyDeck);
+
                 uiManager.DrawInputLog();
+
 
 
                 // 메인 씬 입력 부분
                 Console.SetCursorPosition(5, 27);
-                ConsoleKeyInfo input = Console.ReadKey();
+                ConsoleKeyInfo input = Console.ReadKey(false);
                 switch (input.Key)
                 {
 
                     case ConsoleKey.Spacebar:
-                        uiManager.DrawMainScene();
+                        uiManager.DrawMainScene(eventCount,bossEventCount);
                         QuestCheck(eL.eventList[randNum].key);
                         eL.eventList.RemoveAt(randNum);
 
@@ -134,8 +135,6 @@ namespace ConsoleProject
                         break;
                 }
 
-                //uiManager.DrawInputLog();
-
 
                 // 패배시 게임 끝
                 if (isLose)
@@ -144,17 +143,20 @@ namespace ConsoleProject
                 }
                 Console.CursorVisible = false;
 
-                
+
             }
 
         }       //Play()
-      
 
-        
+
+
 
         public void QuestCheck(int eventKey)
         {
-            if(eventCount >= bossEventCount)
+
+
+
+            if (eventCount >= bossEventCount)
             {
                 // 강제로 10번 으로
                 eventKey = 20;
@@ -173,11 +175,11 @@ namespace ConsoleProject
                     Enemy thief = new Enemy();
                     Enemy samllThied = new Enemy();
                     enemyList = new List<Enemy>();
-                    thief.Init("도적", 10, 50, 50); 
-                    samllThied.Init("민첩한 도적", 14, 30, 30);
+                    thief.Init("도적", 10, 60, 50);
+                    samllThied.Init("민첩한 도적", 16, 25, 30);
                     enemyList.Add(thief);
                     enemyList.Add(samllThied);
-                    
+
                     OnBattle(enemyList);
                     break;
                 case 3:
@@ -196,8 +198,8 @@ namespace ConsoleProject
                     Enemy wolf = new Enemy();
                     Enemy wolf1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    wolf.Init("늑대", 15, 30, 30); 
-                    wolf1.Init("늑대", 12, 30, 30);
+                    wolf.Init("늑대", 15, 40, 30);
+                    wolf1.Init("늑대", 12, 40, 30);
                     enemyList.Add(wolf);
                     enemyList.Add(wolf1);
                     OnBattle(enemyList);
@@ -214,8 +216,8 @@ namespace ConsoleProject
                     Enemy zombie = new Enemy();
                     Enemy ghost1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    zombie.Init("좀비", 20, 60, 60); // 10 - >임시 조정 대미지 1000
-                    ghost1.Init("원혼", 25, 20, 50);
+                    zombie.Init("좀비", 20, 70, 60); 
+                    ghost1.Init("원혼", 25, 25, 50);
                     enemyList.Add(zombie);
                     enemyList.Add(ghost1);
 
@@ -232,6 +234,14 @@ namespace ConsoleProject
                     eM.CursedGunQuest(player);
                     uiManager.DrawStatUI(player);
                     break;
+                case 11:
+                    eM.UnkownCardQuest(deckManager.MyDeck);
+                    uiManager.DrawDeckUi(deckManager.MyDeck);
+                    break;
+                case 12:
+                    eM.GambleQuest(deckManager.MyDeck, deckManager.CardDeck);
+                    uiManager.DrawDeckUi(deckManager.MyDeck);
+                    break;
                 case 20:
                     eM.BossQuest();
 
@@ -239,12 +249,14 @@ namespace ConsoleProject
 
                     Enemy boss = new Enemy();
                     enemyList = new List<Enemy>();
-                    boss.Init("검은수염", 50, 100, 100);
+                    boss.Init("검은수염", 35, 250, 400);
                     enemyList.Add(boss);
 
                     OnBattle(enemyList);
                     break;
             }
+
+
         }       // QeustCheck()
 
 
@@ -309,7 +321,7 @@ namespace ConsoleProject
                     // 버림패 손패 초기화
                     deckManager.DiscardDeck.Clear();
                     deckManager.MyHand.Clear();
-                    uiManager.DrawMainScene();
+                    uiManager.DrawMainScene(eventCount, bossEventCount);
 
                     // 탄약 풀 충전
                     player.ActionPoint = player.MaxActionPoint; 
@@ -326,29 +338,12 @@ namespace ConsoleProject
                 uiManager.DrawEpilog();
                 Thread.Sleep(3000);
                 Console.Clear();
-                uiManager.PrintEpilogAscii();
+                uiManager.PrintGameEndingAscii();
                 Thread.Sleep(3000);
             }
         }
 
     
 
-        // 추후 추가 할 수 있는 퀘스트 선택지. ( Y / N 입력 후 선택지 )
-        //case ConsoleKey.Y:
-        //    Console.SetCursorPosition(5, 26);
-        //    if (questManager.questList[questIndex].isBattle)
-        //    {                          
-        //        uiManager.PrintMyHand(deckManager.MyHand);
-        //        Battle();
-        //    }
-        //    if(questIndex < maxQuestIndex )
-        //    questIndex += 1;
-        //    break;
-        //case ConsoleKey.N:
-        //    Console.SetCursorPosition(5, 26);
-        //    uiManager.PrintInput("N");
-        //    if (questIndex < maxQuestIndex)
-        //        questIndex += 1;
-        //    break;
     }
 }

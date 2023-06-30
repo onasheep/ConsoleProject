@@ -30,7 +30,7 @@ namespace PirateOutLaws
             dialog = new List<string>();
             dialog.Add("당신은 원숭이 무리를 발견 했습니다.");
             dialog.Add("원숭이 무리의 대장이 당신을 경계하면서 쳐다봅니다.");
-            dialog.Add("원숭이 대장이 공격해서 체력이 감소 하였습니다.");
+            dialog.Add("원숭이 대장이 당신을 공격합니다.");
             dialog.Add("체력이 10 감소합니다.");
 
             monkeyQuest.Init(dialog, false, 1);
@@ -108,10 +108,29 @@ namespace PirateOutLaws
             dialog.Add("의심스러운 상인이 당신을 바라봅니다.");
             dialog.Add("상인은 당신에게 총을 건네며,");
             dialog.Add("이 총은 당신을 위한 것이라 말합니다.");
-            dialog.Add("당신은 총을 받고 불긴함을 느낍니다.");
+            dialog.Add("당신은 총을 받고 불길함을 느낍니다.");
             cursedGunQuest.Init(dialog, false, 10);
 
+            // 의문의 카드 퀘스트
+            Event unKnownCardQuest = new Event();
+            dialog = new List<string>();
+            dialog.Add("숲속을 지나가던 중 낡은 집을 발견했습니다.");
+            dialog.Add("들어가려고 하자 소름끼치는 한기가 스칩니다.");
+            dialog.Add("집 안에는 카드 한장이 놓여 있습니다.");
+            dialog.Add("카드를 집고 보니 당신은 가방이 빈 것을");
+            dialog.Add("눈치 챕니다.");
+            unKnownCardQuest.Init(dialog, false, 11);
 
+
+
+            // 도박장 퀘스트
+            Event gambleEvent = new Event();
+            dialog = new List<string>();
+            dialog.Add("당신은 선상 도박장에 도착 했습니다.");
+            dialog.Add("당신은 행운을 느끼고 도박에 뛰어듭니다.");
+            dialog.Add("패배하던 당신에게 마지막에서야 행운이 깃듭니다.");
+            dialog.Add("당신은 겨우 본전만 찾고 빠져나옵니다.");
+            gambleEvent.Init(dialog, false, 12);
 
 
             // 보스 퀘스트
@@ -121,7 +140,7 @@ namespace PirateOutLaws
             dialog.Add("보물을 얻기 위해서는 주인을 처치해야 합니다.");
             dialog.Add("단단히 준비하십시오.");
             dialog.Add("전투를 시작합니다.");
-            bossQuest.Init(dialog, true, 10);
+            bossQuest.Init(dialog, true, 13);
 
 
 
@@ -138,7 +157,9 @@ namespace PirateOutLaws
             eventDic.Add(8, huntQuest);
             eventDic.Add(9, curseQuest);
             eventDic.Add(10, cursedGunQuest);
-            eventDic.Add(11, bossQuest);
+            eventDic.Add(11, unKnownCardQuest);
+            eventDic.Add(12, gambleEvent);
+            eventDic.Add(13, bossQuest);
 
 
 

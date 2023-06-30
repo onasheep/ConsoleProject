@@ -267,7 +267,7 @@ namespace PirateOutLaws
             Console.ResetColor();
 
             
-            player_.MaxHp -= 10;
+            player_.MaxHp -= 20;
             if(player_.MaxHp < player_.CurHp )
             {
                 player_.CurHp = player_.MaxHp;
@@ -279,6 +279,84 @@ namespace PirateOutLaws
             
         }
 
+        public void UnkownCardQuest(List<Card> myDeck_)
+        {
+            Random rand = new Random();
+            for (int i = 0; i < qL.eventDic[11].dialog.Count; i++)
+            {
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[11].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[11].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+                }
+
+            }
+            for(int i = 0; i < 2; i++)
+            {
+                int randNum = rand.Next(1, myDeck_.Count);
+                Console.SetCursorPosition(5, 5 + (qL.eventDic[11].dialog.Count + i) * 2);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("[{0,5}   ]", myDeck_[randNum - 1].Name);
+                Console.Write("카드가 제거 되었습니다.");
+                Console.ResetColor();
+                myDeck_.RemoveAt(randNum - 1);
+            }
+
+
+            DeckManager deckmanager = new DeckManager();
+
+            Console.SetCursorPosition(5, 5 + (qL.eventDic[11].dialog.Count + 2) * 2);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("[{0,5}   ]", deckmanager.UnkownCard().Name);
+            Console.Write("카드를 얻었습니다.");
+            Console.ResetColor();
+
+            myDeck_.Add(deckmanager.UnkownCard());
+         
+
+        }
+
+        public void GambleQuest(List<Card> myDeck_, List<Card> cardDeck_)
+        {
+            Random rand = new Random();
+            for (int i = 0; i < qL.eventDic[12].dialog.Count; i++)
+            {
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[12].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[12].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+                }
+
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                int randNum = rand.Next(1, myDeck_.Count);
+                Console.SetCursorPosition(5, 5 + (qL.eventDic[12].dialog.Count + i) * 2);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("[{0,5}   ]", myDeck_[randNum - 1].Name);
+                Console.Write("카드가 제거 되었습니다.");
+                Console.ResetColor();
+                myDeck_.RemoveAt(randNum - 1);
+            }
+
+            for(int i = 0; i < 2; i++)
+            {
+                int randNum = rand.Next(1, myDeck_.Count);
+                Console.SetCursorPosition(5, 5 + (qL.eventDic[11].dialog.Count + i + 2) * 2);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("[{0,5}   ]", cardDeck_[randNum - 1].Name);
+                Console.Write("카드를 얻었습니다.");
+                Console.ResetColor();
+
+                myDeck_.Add(cardDeck_[randNum - 1]);
+            }
+        }
 
 
         // 보스 퀘스트

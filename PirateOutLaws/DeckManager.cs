@@ -23,17 +23,17 @@ namespace ConsoleProject
             Card nanta = new Card();
             nanta.Init("　난타", 0, 13, 0,"근접　");
             Card shot = new Card();
-            shot.Init("　사격", 1, 9, 1,"원거리");
+            shot.Init("　사격", 1, 10, 1,"원거리");
             Card accuShot = new Card();
             accuShot.Init("　속사", 2, 17,1,"원거리");
             Card wholeShot = new Card();
-            wholeShot.Init("　난사", 3, 18,2,"범위　");
+            wholeShot.Init("　난사", 3, 19,2,"범위　");
             Card windstorm = new Card();
             windstorm.Init("　광풍", 0, 9, 0,"근접　");
             Card allin = new Card();
             allin.Init("　올인", 0, 15, 0, "근접　");
             Card quickShot = new Card();
-            quickShot.Init("　큇샷",0, 8, 1, "원거리");
+            quickShot.Init("　큇샷",0, 9, 1, "원거리");
 
 
             CardDeck = new List<Card>
@@ -95,6 +95,13 @@ namespace ConsoleProject
 
          
 
+        }
+
+        public Card UnkownCard()
+        {
+            Card unKownCard = new Card();
+            unKownCard.Init("　한방", 2, 50, 2, "범위　");
+            return unKownCard;
         }
 
         public void InitMyHand()

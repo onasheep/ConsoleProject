@@ -156,7 +156,7 @@ namespace ConsoleProject
         }
 
         // 메인 씬
-        public void DrawMainScene()
+        public void DrawMainScene(int eventCount_, int bossEventCount)
         {
             for (int j = 4; j < 25; j++)
             {
@@ -177,6 +177,7 @@ namespace ConsoleProject
                 }
 
                 DrawInfo();
+                DrawMapUi(eventCount_,bossEventCount);
 
             }
         }
@@ -214,67 +215,10 @@ namespace ConsoleProject
                 }
                 DrawInfo();
 
-
             }
         }
 
-        public void PrintGameEndingAscii()
-        {
-            Console.OutputEncoding = Encoding.UTF8;
 
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            for (int i = 0; i < 9; i++)
-            {
-                Console.SetCursorPosition(0, i);
-                if (i == 0)
-                {
-                    Console.Write("  ████████████████████████████████████████████████████████████  ");
-                }
-                else if (i == 1)
-                {
-                    Console.Write("██                                                            ██");
-
-                }
-                else if (i == 2)
-                {
-                    Console.Write("██              ██████    ██      ██    ██████                ██");
-                }
-                else if (i == 3)
-                {
-                    Console.Write("██              ██        ████    ██    ██    ██              ██");
-                }
-                else if (i == 4)
-                {
-
-                    Console.Write("██              ██████    ██  ██  ██    ██    ██              ██");
-                }
-                else if (i == 5)
-                {
-
-                    Console.Write("██              ██        ██    ████    ██    ██              ██");
-                }
-                else if (i == 6)
-                {
-
-                    Console.Write("██              ██████    ██      ██    ██████                ██");
-                }
-                else if (i == 7)
-                {
-
-                    Console.Write("██                                                            ██");
-                }
-                else if (i == 8)
-                {
-
-                    Console.Write("  ████████████████████████████████████████████████████████████  ");
-                }
-
-
-            }
-            Console.ResetColor();
-
-
-        }
 
         #region Battle Effect
         // 원거리 근거리 공격시 화살표로 공격 여부 보여주기
@@ -357,6 +301,7 @@ namespace ConsoleProject
         #endregion
 
 
+        #region Lose Scene
         // 패배 씬
         public void DrawLoseGame()
         {
@@ -450,51 +395,14 @@ namespace ConsoleProject
             }
 
         }
-
-
-
-
-        public void DrawWinBattleScene()
-        {
-            for (int j = 4; j < 25; j++)
-            {
-                Console.SetCursorPosition(2, j);
-                if (j == 4)
-                {
-                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
-
-                }
-                else if(j == 10)
-                {
-                    Console.WriteLine($"│                {"전투에서 승리하였습니다.".PadRight(5)}                │");
-
-                }
-                else if(j == 11)
-                {
-                    Console.WriteLine($"│                {"덱에 넣을 카드를 고르세요.".PadRight(5)}              │");
-
-                }
-                else if (j == 24)
-                {
-
-                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
-                }
-                else
-                {
-                    Console.WriteLine("│                                                        │");
-                }
-
-
-            }
-        }
-
+        #endregion
 
         public void DrawEpilog()
         {
             Console.CursorVisible = false;
             for (int i = 20; i < 23; i++)
             {
-                Console.SetCursorPosition(2, i);          
+                Console.SetCursorPosition(2, i);
                 if (i == 20)
                 {
                     Console.WriteLine("    당신은 여정의 끝에서 보물을 얻어냈습니다.           ");
@@ -503,7 +411,7 @@ namespace ConsoleProject
                 {
                     Console.WriteLine("    당신이 얻은 결과가 우연일수도 실력일 수도 있지만    ");
                 }
-                else if(i == 22)
+                else if (i == 22)
                 {
                     Console.WriteLine("    보물을 얻을 자격은 충분해 보입니다.                 ");
                 }
@@ -516,6 +424,8 @@ namespace ConsoleProject
         public void PrintEpilogAscii()
         {
             Console.OutputEncoding = Encoding.UTF8;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             for (int i = 0; i < 21; i++)
             {
@@ -616,9 +526,105 @@ namespace ConsoleProject
 
 
             }
+            Console.ResetColor();
         }
 
+        public void PrintGameEndingAscii()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            for (int i = 6; i < 15; i++)
+            {
+                Console.SetCursorPosition(5, i);
+                if (i == 6)
+                {
+                    Console.Write("  ████████████████████████████████████████████████████████████  ");
+                }
+                else if (i == 7)
+                {
+                    Console.Write("██                                                            ██");
+
+                }
+                else if (i == 8)
+                {
+                    Console.Write("██              ██████    ██      ██    ██████                ██");
+                }
+                else if (i == 9)
+                {
+                    Console.Write("██              ██        ████    ██    ██    ██              ██");
+                }
+                else if (i == 10)
+                {
+
+                    Console.Write("██              ██████    ██  ██  ██    ██    ██              ██");
+                }
+                else if (i == 11)
+                {
+
+                    Console.Write("██              ██        ██    ████    ██    ██              ██");
+                }
+                else if (i == 12)
+                {
+
+                    Console.Write("██              ██████    ██      ██    ██████                ██");
+                }
+                else if (i == 13)
+                {
+
+                    Console.Write("██                                                            ██");
+                }
+                else if (i == 14)
+                {
+
+                    Console.Write("  ████████████████████████████████████████████████████████████  ");
+                }
+
+
+            }
+            Console.ResetColor();
+
+
+        }
+
+        public void DrawWinBattleScene()
+        {
+            for (int j = 4; j < 25; j++)
+            {
+                Console.SetCursorPosition(2, j);
+                if (j == 4)
+                {
+                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
+
+                }
+                else if(j == 10)
+                {
+                    Console.WriteLine($"│                {"전투에서 승리하였습니다.".PadRight(5)}                │");
+
+                }
+                else if(j == 11)
+                {
+                    Console.WriteLine($"│                {"덱에 넣을 카드를 고르세요.".PadRight(5)}              │");
+
+                }
+                else if (j == 24)
+                {
+
+                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
+                }
+                else
+                {
+                    Console.WriteLine("│                                                        │");
+                }
+
+
+            }
+        }
+
+
        
+       
+
         // 덱 UI
         public void DrawDeckUi(List<Card> myDeck_)
         {
@@ -902,6 +908,33 @@ namespace ConsoleProject
            
         }
 
+        public void DrawMapUi(int eventCount_,int bossEventCount)
+        {
+            for(int i = 25; i < 29; i++)
+            {
+                Console.SetCursorPosition(60, i);
+                if (i == 25)
+                {
+                    Console.Write("┌──────────────────┐");
+                }
+                else if (i == 26)
+                {
+                    Console.Write("│     현재 여정    │");
+                }
+                else if (i == 27)
+                {
+                    Console.Write($"│      {eventCount_,-2} / {bossEventCount}     │");
+                }
+                else if (i == 28)
+                {
+                    Console.Write("└──────────────────┘");
+                }
+                else
+                {
+                    Console.WriteLine($"│                  │");
+                }
+            }
+        }
       
     }
 }
