@@ -348,7 +348,7 @@ namespace PirateOutLaws
             for(int i = 0; i < 2; i++)
             {
                 int randNum = rand.Next(1, myDeck_.Count);
-                Console.SetCursorPosition(5, 5 + (qL.eventDic[11].dialog.Count + i + 2) * 2);
+                Console.SetCursorPosition(5, 5 + (qL.eventDic[12].dialog.Count + i + 2) * 2);
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("[{0,5}   ]", cardDeck_[randNum - 1].Name);
                 Console.Write("카드를 얻었습니다.");
