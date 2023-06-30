@@ -17,28 +17,33 @@ namespace ConsoleProject
         public void DrawTitleScene()
         {
 
-
-
+            Console.OutputEncoding = Encoding.UTF8;
             for (int j = 0; j < 25; j++)
             {
                 Console.SetCursorPosition(3, j);
                 if (j == 0)
                 {
-                    Console.WriteLine("┌───────────────────────────────────────────────────┐");
+                    Console.Write("┌───────────────────────────────────────────────────┐");
                 }
+               
+
                 else if (j == 24)
                 {
-                    Console.WriteLine("└───────────────────────────────────────────────────┘");
+                    Console.Write("└───────────────────────────────────────────────────┘");
                 }
                 else
                 {
-                    Console.WriteLine("│                                                   │");
+                    Console.Write("│                                                   │");
                 }
+                Console.CursorVisible = false;
 
-                Console.SetCursorPosition(23, 10);
-                Console.WriteLine("PIRATE OUTLAWS");
-                Console.SetCursorPosition(23, 15);
-                Console.WriteLine("Tab to Start..");
+                PrintIntroAscii();
+               
+                Console.SetCursorPosition(23, 18);
+                Console.Write("PIRATE OUTLAWS");
+                Console.SetCursorPosition(23, 20);
+                Console.Write("Tab to Start..");
+                Console.ResetColor();
 
 
             }
@@ -51,8 +56,77 @@ namespace ConsoleProject
                     break;
                 }
             }
-           
+            
 
+        }
+
+        public void PrintIntroAscii()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for(int j = 0; j < 15; j++)
+            {
+                Console.SetCursorPosition(14, j);
+                if (j == 2)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠤⠴⠶⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ");
+                }
+                else if (j == 3)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                }
+                else if (j == 4)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠂⠉⡇⠀⠀⠀⢰⣿⣿⣿⣿⣧⠀⠀⢀⣄⣀⠀⠀⠀⠀⠀⠀");
+
+                }
+                else if (j == 5)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⢠⣶⣶⣷⠀⠀⠀⠸⠟⠁⠀⡇⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀");
+                }
+                else if (j == 6)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠘⠟⢹⣋⣀⡀⢀⣤⣶⣿⣿⣿⣿⣿⡿⠛⣠⣼⣿⡟⠀⠀⠀⠀");
+                }
+                else if (j == 7)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⣴⣾⣿⣿⣿⣿⢁⣾⣿⣿⣿⣿⣿⣿⡿⢁⣾⣿⣿⣿⠁⠀⠀⠀⠀");
+                }
+                else if (j == 8)
+                {
+                    Console.Write("⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿⣿⠿⠇⠀⠀⠀⠀");
+                }
+                else if (j == 9)
+                {
+                    Console.Write("⠀⠀⠀⠳⣤⣙⠟⠛⢻⠿⣿⠸⣿⣿⣿⣿⣿⣿⣿⣇⠘⠉⠀⢸⠀⢀⣠⠀⠀⠀");
+                }
+                else if (j == 10)
+                {
+                    Console.Write("⠀⠀⠀⠀⠈⠻⣷⣦⣼⠀⠀⠀⢻⣿⣿⠿⢿⡿⠿⣿⡄⠀⠀⣼⣷⣿⣿⠀⠀⠀");
+                }
+                else if (j == 11)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣶⣄⡈⠉⠀⠀⢸⡇⠀⠀⠉⠂⠀⣿⣿⣿⣧⠀⠀⠀");
+                }
+                else if (j == 12)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣷⣤⣀⣸⣧⣠⣤⣴⣶⣾⣿⣿⣿⡿⠀⠀⠀");
+                }
+                else if (j == 13)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀");
+                }
+                else if (j == 14)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠉⠀⠀⠀⠀");
+                }
+                else if (j == 15)
+                {
+                    Console.Write("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                }
+            }
+            
         }
 
         // 플레이어 능력치 창
@@ -102,7 +176,8 @@ namespace ConsoleProject
                     Console.WriteLine("│                                                        │");
                 }
 
-                
+                DrawInfo();
+
             }
         }
 
@@ -137,11 +212,69 @@ namespace ConsoleProject
                 {
                     Console.Write("┃                                                        ┃");
                 }
+                DrawInfo();
 
-                
+
             }
         }
 
+        public void PrintGameEndingAscii()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int i = 0; i < 9; i++)
+            {
+                Console.SetCursorPosition(0, i);
+                if (i == 0)
+                {
+                    Console.Write("  ████████████████████████████████████████████████████████████  ");
+                }
+                else if (i == 1)
+                {
+                    Console.Write("██                                                            ██");
+
+                }
+                else if (i == 2)
+                {
+                    Console.Write("██              ██████    ██      ██    ██████                ██");
+                }
+                else if (i == 3)
+                {
+                    Console.Write("██              ██        ████    ██    ██    ██              ██");
+                }
+                else if (i == 4)
+                {
+
+                    Console.Write("██              ██████    ██  ██  ██    ██    ██              ██");
+                }
+                else if (i == 5)
+                {
+
+                    Console.Write("██              ██        ██    ████    ██    ██              ██");
+                }
+                else if (i == 6)
+                {
+
+                    Console.Write("██              ██████    ██      ██    ██████                ██");
+                }
+                else if (i == 7)
+                {
+
+                    Console.Write("██                                                            ██");
+                }
+                else if (i == 8)
+                {
+
+                    Console.Write("  ████████████████████████████████████████████████████████████  ");
+                }
+
+
+            }
+            Console.ResetColor();
+
+
+        }
 
         #region Battle Effect
         // 원거리 근거리 공격시 화살표로 공격 여부 보여주기
@@ -227,31 +360,100 @@ namespace ConsoleProject
         // 패배 씬
         public void DrawLoseGame()
         {
-            for (int j = 4; j < 25; j++)
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.SetCursorPosition(2, 17);
+
+
+            Console.WriteLine("                          당신은 죽었습니다.                  ".PadRight(10));
+
+
+            PrintLostAscii();
+
+        }
+
+
+        public void PrintLostAscii()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            for (int j = 0; j < 15; j++)
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.SetCursorPosition(2, j);
-                if (j == 4)
+                if (j == 2)
                 {
-                    Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                    Console.Write("    .o oOOOOOOOo                                            OOOo");
+                }
+                else if (j == 3)
+                {
+                    Console.Write("    Ob.OOOOOOOo  OOOo.      oOOo.                      .adOOOOOOO");
+                }
+                else if (j == 4)
+                {
+                    Console.Write("    OboO\"\"\"\"\"\"\"\"\"\"\"\".OOo. .oOOOOOo.    OOOo.oOOOOOo..\"\"\"\"\"\"\"\"\"'OO");
 
                 }
-                else if( j == 20)
+                else if (j == 5)
                 {
-                    Console.WriteLine("┃                    당신은 죽었습니다.                  ┃".PadRight(10));
+                    Console.Write("    OOP.oOOOOOOOOOOO \"POOOOOOOOOOOo.   `\"OOOOOOOOOP,OOOOOOOOOOOB'");
                 }
-                else if (j == 24)
+                else if (j == 6)
                 {
-
-                    Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                    Console.Write("    `O'OOOO'     `OOOOo\"OOOOOOOOOOO` .adOOOOOOOOO\"oOOO'    `OOOOo");
                 }
-                else
+                else if (j == 7)
                 {
-                    Console.WriteLine("┃                                                        ┃");
+                    Console.Write("    .OOOO'            `OOOOOOOOOOOOOOOOOOOOOOOOOO'            `OO");
+                }
+                else if (j == 8)
+                {
+                    Console.Write("    OOOOO                 '\"OOOOOOOOOOOOOOOO\"`                oOO");
+                }
+                else if (j == 9)
+                {
+                    Console.Write("   oOOOOOba.                .adOOOOOOOOOOba               .adOOOOo.");
+                }
+                else if (j == 10)
+                {
+                    Console.Write("  oOOOOOOOOOOOOOba.    .adOOOOOOOOOO@^OOOOOOOba.     .adOOOOOOOOOOOO");
+                }
+                else if (j == 11)
+                {
+                    Console.Write(" OOOOOOOOOOOOOOOOO.OOOOOOOOOOOOOO\"`  '\"OOOOOOOOOOOOO.OOOOOOOOOOOOOO");
+                }
+                else if (j == 12)
+                {
+                    Console.Write(" \"OOOO\"       \"YOoOOOOMOIONODOO\"`  .   '\"OOROAOPOEOOOoOY\"     \"OOO\"");
+                }
+                else if (j == 13)
+                {
+                    Console.Write("    Y           'OOOOOOOOOOOOOO: .oOOo. :OOOOOOOOOOO?'         :`");
+                }
+                else if (j == 14)
+                {
+                    Console.Write("    :            .oO%OOOOOOOOOOo.OOOOOO.oOOOOOOOOOOOO?         .");
+                }
+                else if (j == 15)
+                {
+                    Console.Write("    .            oOOP\"%OOOOOOOOoOOOOOOO?oOOOOO?OOOO\"OOo");
+                }
+                else if (j == 16)
+                {
+                    Console.Write("                 '%o  OOOO\"%OOOO%\"%OOOOO\"OOOOOO\"OOO':");
+                }
+                else if (j == 17)
+                {
+                    Console.Write("                      `$\"  `OOOO' `O\"Y ' `OOOO'  o             .");
                 }
 
             }
+
         }
+
+
+
+
         public void DrawWinBattleScene()
         {
             for (int j = 4; j < 25; j++)
@@ -289,71 +491,134 @@ namespace ConsoleProject
 
         public void DrawEpilog()
         {
-            for (int j = 4; j < 25; j++)
+            Console.CursorVisible = false;
+            for (int i = 20; i < 23; i++)
             {
-                Console.SetCursorPosition(2, j);
-                if (j == 4)
+                Console.SetCursorPosition(2, i);          
+                if (i == 20)
                 {
-                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
-
+                    Console.WriteLine("    당신은 여정의 끝에서 보물을 얻어냈습니다.           ");
                 }
-                else if (j == 20)
+                else if (i == 21)
                 {
-                    Console.WriteLine("│    당신은 여정의 끝에서 보물을 얻어냈습니다.           │");
-
+                    Console.WriteLine("    당신이 얻은 결과가 우연일수도 실력일 수도 있지만    ");
                 }
-                else if (j == 21)
+                else if(i == 22)
                 {
-                    Console.WriteLine("│    당신이 얻은 결과가 우연일수도 실력일 수도 있지만    │");
-                }
-                else if( j == 22)
-                {
-                    Console.WriteLine("│    보물을 얻을 자격은 충분해 보입니다.                 │");
-                }
-                else if (j == 24)
-                {
-                    Console.SetCursorPosition(2, j);
-
-                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
-                }
-                else
-                {
-                    Console.WriteLine("│                                                        │");
+                    Console.WriteLine("    보물을 얻을 자격은 충분해 보입니다.                 ");
                 }
 
+                PrintEpilogAscii();
 
             }
         }
-        public void DrawGameEnding()
+
+        public void PrintEpilogAscii()
         {
-            for (int j = 4; j < 25; j++)
+            Console.OutputEncoding = Encoding.UTF8;
+
+            for (int i = 0; i < 21; i++)
             {
-                Console.SetCursorPosition(2, j);
-                if (j == 4)
+                Console.SetCursorPosition(0, i);
+                if (i == 0)
                 {
-                    Console.WriteLine("┌────────────────────────────────────────────────────────┐");
+                    Console.WriteLine("                            _.--.");
 
                 }
-                else if (j == 21)
+                else if (i == 1)
                 {
-                    Console.WriteLine("│                         The End.                       │");
+                    Console.WriteLine("                        _.-'_:-'||");
 
                 }
-
-                else if (j == 24)
+                else if (i == 2)
                 {
-                    Console.SetCursorPosition(2, j);
-
-                    Console.WriteLine("└────────────────────────────────────────────────────────┘");
+                    Console.WriteLine("                    _.-'_.-::::'||");
                 }
-                else
+                else if (i == 3)
                 {
-                    Console.WriteLine("│                                                        │");
+                    Console.WriteLine("               _.-:'_.-::::::'  ||");
+                }
+                else if (i == 4)
+                {
+
+                    Console.WriteLine("             .'`-.-:::::::'     ||");
+                }
+                else if (i == 5)
+                {
+
+                    Console.WriteLine("            /.'`;|:::::::'      ||_");
+                }
+                else if (i == 6)
+                {
+
+                    Console.WriteLine("           ||   ||::::::'     _.;._'-._");
+                }
+                else if (i == 7)
+                {
+
+                    Console.WriteLine("           ||   ||:::::'  _.-!oo @.!-._'-.");
+                }
+                else if (i == 8)
+                {
+
+                    Console.WriteLine("           \'.  ||:::::.-!()oo @!()@.-'_.|");
+                }
+                else if (i == 9)
+                {
+
+                    Console.WriteLine("            '.'-;|:.-'.&$@.& ()$%-'o.'\\U||");
+                }
+                else if (i == 10)
+                {
+
+                    Console.WriteLine("              `>'-.!@%()@'@_%-'_.-o _.|'||");
+                }
+                else if (i == 11)
+                {
+
+                    Console.WriteLine("               ||-._'-.@.-'_.-' _.-o  |'||");
+                }
+                else if (i == 12)
+                {
+
+                    Console.WriteLine("               ||=[ '-._.-\\U/.-'    o |'||");
+                }
+                else if (i == 13)
+                {
+
+                    Console.WriteLine("               || '-.]=|| |'|      o  |'||");
+                }
+                else if (i == 14)
+                {
+
+                    Console.WriteLine("               ||      || |'|        _| ';");
+                }
+                else if (i == 15)
+                {
+
+                    Console.WriteLine("               ||      || |'|    _.-'_.-'");
+                }
+                else if (i == 16)
+                {
+
+                    Console.WriteLine("               |'-._   || |'|_.-'_.-'");
+                }
+                else if (i == 17)
+                {
+
+                    Console.WriteLine("                '-._'-.|| |' `_.-'");
+                }
+                else if (i == 18)
+                {
+
+                    Console.WriteLine("                    '-.||_/.-'");
                 }
 
 
             }
         }
+
+       
         // 덱 UI
         public void DrawDeckUi(List<Card> myDeck_)
         {
@@ -384,6 +649,7 @@ namespace ConsoleProject
             }
         }
 
+        #region DrawInfo and InfoText
         public void DrawInfo()
         {
             for (int j = 0; j < 25; j++)
@@ -405,20 +671,25 @@ namespace ConsoleProject
                 Console.ResetColor();
 
             }
+            PrintInofText();
         }
 
         public void PrintInofText()
         {
             Console.SetCursorPosition(83, 1);
-            Console.Write(" 도움말 ");  
+            Console.Write(" 도움말 ");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.SetCursorPosition(83, 2);
             Console.Write(" 스탯 창 설명");
+            Console.ResetColor();
             Console.SetCursorPosition(83, 3);
             Console.Write(" 행동력:카드를 사용할 때마다 소모.");
             Console.SetCursorPosition(83, 4);
             Console.Write(" 체력:현재 체력과 최대 체력.");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.SetCursorPosition(83, 6);
             Console.Write(" 전투 창 설명");
+            Console.ResetColor();
             Console.SetCursorPosition(83, 7);
             Console.Write(" 전투는 턴제로 진행됩니다.");
             Console.SetCursorPosition(83, 8);
@@ -429,8 +700,10 @@ namespace ConsoleProject
             Console.Write(" 턴을 넘기면 적은 ");
             Console.SetCursorPosition(83, 11);
             Console.Write(" 플레이어를 공격합니다.");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.SetCursorPosition(83, 13);
             Console.Write(" 카드 타입 설명");
+            Console.ResetColor();
             Console.SetCursorPosition(83, 14);
             Console.Write(" 근접 - 가장 앞의 적을 공격.");
             Console.SetCursorPosition(83, 15);
@@ -446,16 +719,8 @@ namespace ConsoleProject
             Console.SetCursorPosition(83, 20);
             Console.Write(" 드로우 - 카드를 뽑음.");
 
-
-
-
-
-
-
-
-
-
         }
+        #endregion
 
 
         //입력 창 출력

@@ -17,11 +17,12 @@ namespace PirateOutLaws
 
           
 
+
+
+            ui.PrintGameEndingAscii();
+
             Thread.Sleep(2000);
 
-            Console.Clear();
-
-            ui.DrawGameEnding();
         }
 
     }

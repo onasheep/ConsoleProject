@@ -85,8 +85,6 @@ namespace ConsoleProject
             uiManager.DrawStatUI(player);
             uiManager.DrawDeckUi(deckManager.MyDeck);
             uiManager.DrawInputLog();
-            uiManager.DrawInfo();
-            uiManager.PrintInofText();
 
             while (true)
             {
@@ -328,7 +326,7 @@ namespace ConsoleProject
                 uiManager.DrawEpilog();
                 Thread.Sleep(3000);
                 Console.Clear();
-                uiManager.DrawGameEnding();
+                uiManager.PrintEpilogAscii();
                 Thread.Sleep(3000);
             }
         }

@@ -90,13 +90,10 @@ namespace ConsoleProject
             MyDeck.Add(doubleShot);
 
             Card food = new Card();
-            food.Init("　식량", 1, 150, 2, "회복　");
+            food.Init("　식량", 1, 50, 3, "회복　");
             MyDeck.Add(food);
 
-           // 광역공격 테스트 용
-           //Card food = new Card();
-           // food.Init("　식량", 1, 100, 2, "회복　");
-           // MyDeck.Add(food);
+         
 
         }
 
