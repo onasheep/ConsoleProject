@@ -12,7 +12,7 @@ namespace ConsoleProject
         public string Name { get; set; }
         public int ActionCost { get; set; }
         public int Value { get; set; }
-        // 0 - 근접 1 - 원거리 2 - 범위 3 - 회복 4 - 탄약 5 - 드로우
+        // 0 - 근접 1 - 원거리 2 - 범위 3 - 회복 4 - 행동력 5 - 드로우
         public int TypeIndex { get; set; }
 
         public string TypeName { get; set; }

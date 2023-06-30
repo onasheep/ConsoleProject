@@ -18,8 +18,10 @@ namespace PirateOutLaws
             Event introQuest = new Event();
             dialog = new List<string>();
             dialog.Add("당신은 보물을 찾기 위한 여정을 떠납니다.");
-            dialog.Add("흥미로운 모험 또는 불필요한 싸움을 만날 수 있습니다.");
-            dialog.Add("행운이 따라준다면 여정에 끝에 도달할 수 있을 것입니다.");
+            dialog.Add("흥미로운 모험 또는 불필요한 싸움을");
+            dialog.Add("만날 수 있습니다.");
+            dialog.Add("행운이 따라준다면 여정의 끝에");
+            dialog.Add("도달할 수 있을 것 입니다.");
             dialog.Add("행운을 빕니다.");
             introQuest.Init(dialog, false,0);
 
@@ -47,7 +49,7 @@ namespace PirateOutLaws
             dialog = new List<string>();
             dialog.Add("버려진 집을 발견했습니다.");
             dialog.Add("하룻밤을 보내기에는 충분해 보입니다.");
-            dialog.Add("체력이 40 증가했습니다.");
+            dialog.Add("현재 체력이 40 증가했습니다.");
             innQuest.Init(dialog, false, 3);
 
             // 보물 퀘스트 Test
@@ -61,7 +63,7 @@ namespace PirateOutLaws
             // 짐승 무리 배틀 퀘스트 Test
             Event beastQuest = new Event();
             dialog = new List<string>();
-            dialog.Add("들개 무리들을 발견했습니다.");
+            dialog.Add("늑대 무리들을 발견했습니다.");
             dialog.Add("당신은 도망가지 못했습니다.");
             dialog.Add("전투를 시작합니다.");
             beastQuest.Init(dialog, true, 5);
@@ -116,7 +118,9 @@ namespace PirateOutLaws
             Event bossQuest = new Event();
             dialog = new List<string>();
             dialog.Add("당신은 여정의 끝에 도달했습니다.");
-            dialog.Add("마지막 보스만 잡으면 보물을 손에 넣을 수 있습니다.");
+            dialog.Add("보물을 얻기 위해서는 주인을 처치해야 합니다.");
+            dialog.Add("단단히 준비하십시오.");
+            dialog.Add("전투를 시작합니다.");
             bossQuest.Init(dialog, true, 10);
 
 

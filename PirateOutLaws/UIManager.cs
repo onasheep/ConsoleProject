@@ -71,7 +71,7 @@ namespace ConsoleProject
                 }
                 else if (i == 2)
                 {
-                    Console.WriteLine($"│ 체력 : {player.CurHp,-5} / {player.MaxHp}                       탄약 : {player.ActionPoint} / {player.MaxActionPoint}  │");
+                    Console.WriteLine($"│ 체력 : {player.CurHp,-5} / {player.MaxHp}                      행동력 : {player.ActionPoint} / {player.MaxActionPoint} │");
                 }
                 else if (i == 3)
                 {
@@ -94,7 +94,6 @@ namespace ConsoleProject
                 }
                 else if (j == 24)
                 {
-                    //Console.SetCursorPosition(2, j);
 
                     Console.WriteLine("└────────────────────────────────────────────────────────┘");
                 }
@@ -193,7 +192,6 @@ namespace ConsoleProject
 
         }
 
-        // 15  7
         public void Print_HealEffect()
         {
             for(int i = 8; i > 6; i--)
@@ -203,6 +201,17 @@ namespace ConsoleProject
                 Thread.Sleep(60);
             }
         }
+
+        public void Print_GetActionPoint()
+        {
+            for(int i = 8; i > 6; i--)
+            {
+                Console.SetCursorPosition(15, i);
+                Console.WriteLine("º");
+                Thread.Sleep(60);
+            }
+        }
+
 
         // 데미지 혹은 회복 등 수치 출력
         public void PrintValue(int damage, int pos)
@@ -375,6 +384,80 @@ namespace ConsoleProject
             }
         }
 
+        public void DrawInfo()
+        {
+            for (int j = 0; j < 25; j++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.SetCursorPosition(81, j);
+                if (j == 0)
+                {
+                    Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                }         
+                else if (j == 24)
+                {
+                    Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                }
+                else
+                {
+                    Console.WriteLine("┃                                   ┃");
+                }
+                Console.ResetColor();
+
+            }
+        }
+
+        public void PrintInofText()
+        {
+            Console.SetCursorPosition(83, 1);
+            Console.Write(" 도움말 ");  
+            Console.SetCursorPosition(83, 2);
+            Console.Write(" 스탯 창 설명");
+            Console.SetCursorPosition(83, 3);
+            Console.Write(" 행동력:카드를 사용할 때마다 소모.");
+            Console.SetCursorPosition(83, 4);
+            Console.Write(" 체력:현재 체력과 최대 체력.");
+            Console.SetCursorPosition(83, 6);
+            Console.Write(" 전투 창 설명");
+            Console.SetCursorPosition(83, 7);
+            Console.Write(" 전투는 턴제로 진행됩니다.");
+            Console.SetCursorPosition(83, 8);
+            Console.Write(" 플레이어는 행동력을 소모하여");
+            Console.SetCursorPosition(83, 9);
+            Console.Write(" 카드를 사용할 수 있습니다.");
+            Console.SetCursorPosition(83, 10);
+            Console.Write(" 턴을 넘기면 적은 ");
+            Console.SetCursorPosition(83, 11);
+            Console.Write(" 플레이어를 공격합니다.");
+            Console.SetCursorPosition(83, 13);
+            Console.Write(" 카드 타입 설명");
+            Console.SetCursorPosition(83, 14);
+            Console.Write(" 근접 - 가장 앞의 적을 공격.");
+            Console.SetCursorPosition(83, 15);
+            Console.Write(" 원거리 - 가장 뒤의 적을 공격.");
+            Console.SetCursorPosition(83, 16);
+            Console.Write(" 뒤의 적이없다면 앞의 적을 공격.");
+            Console.SetCursorPosition(83, 17);
+            Console.Write(" 범위 - 모든 적을 공격.");
+            Console.SetCursorPosition(83, 18);
+            Console.Write(" 회복 - 체력 회복.");
+            Console.SetCursorPosition(83, 19);
+            Console.Write(" 보급 - 행동력 추가.");
+            Console.SetCursorPosition(83, 20);
+            Console.Write(" 드로우 - 카드를 뽑음.");
+
+
+
+
+
+
+
+
+
+
+        }
+
+
         //입력 창 출력
         public void DrawInputLog()
         {
@@ -404,12 +487,12 @@ namespace ConsoleProject
         // 현재 덱 목록 출력
         public void PrintMyDeck(List<Card> myDeck_)
         {
-          ;
-            for(int i = 0; i < myDeck_.Count;i++)
+            Console.SetCursorPosition(64, 3);
+            Console.Write(" 이름   행동력");
+            for (int i = 0; i < myDeck_.Count;i++)
             {
                 
-                Console.SetCursorPosition(64, 3);
-                Console.Write(" 이름  코스트");
+                
                 Console.SetCursorPosition(64, 5 + i);
                 Console.Write($"{myDeck_[i].Name,-5} [{myDeck_[i].ActionCost}]");
 

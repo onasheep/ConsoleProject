@@ -80,9 +80,13 @@ namespace ConsoleProject
 
 
 
-
             uiManager.DrawTitleScene();
             uiManager.DrawMainScene();
+            uiManager.DrawStatUI(player);
+            uiManager.DrawDeckUi(deckManager.MyDeck);
+            uiManager.DrawInputLog();
+            uiManager.DrawInfo();
+            uiManager.PrintInofText();
 
             while (true)
             {

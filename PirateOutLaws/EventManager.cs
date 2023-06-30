@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace PirateOutLaws
 {
@@ -23,8 +24,16 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[0].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[0].dialog[i]);
+                Console.SetCursorPosition(4, 5 + i * 2);
+                for (int j = 0; j < qL.eventDic[0].dialog[i].Length;j++)
+                {
+                    Console.Write(qL.eventDic[0].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+                }
+                   
+
+                
             }
 
         }
@@ -33,8 +42,21 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[1].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[1].dialog[i]);
+                if(i == qL.eventList[1].dialog.Count - 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                Console.SetCursorPosition(4, 5 + i * 2);
+                for (int j = 0; j < qL.eventDic[1].dialog[i].Length;j++)
+                {
+                    
+                    Console.Write(qL.eventDic[1].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+                Console.ResetColor();
+
             }
 
             player_.CurHp -= 10;
@@ -44,8 +66,14 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[2].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[2].dialog[i]);
+                Console.SetCursorPosition(4, 5 + i * 2);
+                for (int j = 0; j < qL.eventDic[2].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[2].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
 
             }
         }
@@ -55,9 +83,19 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[3].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[3].dialog[i]);
+                if (i == qL.eventList[3].dialog.Count - 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                Console.SetCursorPosition(4, 5 + i * 2);
+                for (int j = 0; j < qL.eventDic[3].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[3].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
 
+                }
+                Console.ResetColor();
             }
             player_.CurHp += 40;
             if (player_.CurHp > player_.MaxHp)
@@ -72,11 +110,18 @@ namespace PirateOutLaws
             int randNum = rand.Next(1, cardDeck_.Count);
             for (int i = 0; i < qL.eventDic[4].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[4].dialog[i]);
-               
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[4].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[4].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+
             }
-            Console.SetCursorPosition(5, 5 + qL.eventDic[4].dialog.Count);
+            Console.SetCursorPosition(5, 5 + (qL.eventDic[4].dialog.Count) * 2);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[{0,5}   ]", cardDeck_[randNum - 1].Name);
             Console.Write("카드를 얻었습니다.");
@@ -92,9 +137,17 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[5].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[5].dialog[i]);
-            }            
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[5].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[5].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+
+            }
         }
 
         // 독 물 퀘스트
@@ -102,8 +155,21 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[6].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[6].dialog[i]);
+                
+                if (i == qL.eventDic[6].dialog.Count - 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+
+                Console.SetCursorPosition(4, 5 + i * 2);
+                for (int j = 0; j < qL.eventDic[6].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[6].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+                Console.ResetColor();
             }
             player_.CurHp -= 20;         
         }
@@ -113,18 +179,37 @@ namespace PirateOutLaws
         {
             for (int i = 0; i < qL.eventDic[7].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[7].dialog[i]);
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[7].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[7].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+
             }
         }
 
         // 사냥 퀘스트
         public void HuntQuest(Player player_)
         {
-            for(int i = 0; i < qL.eventDic[8].dialog.Count; i++)
+            for (int i = 0; i < qL.eventDic[8].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[8].dialog[i]);
+                if (i == qL.eventList[8].dialog.Count - 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                Console.SetCursorPosition(4, 5 + i * 2);
+                for (int j = 0; j < qL.eventDic[8].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[8].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+                Console.ResetColor();
             }
             player_.CurHp += 20;
             player_.MaxHp += 20;
@@ -137,11 +222,18 @@ namespace PirateOutLaws
             int randNum = rand.Next(1, myDeck_.Count);
             for (int i = 0; i < qL.eventDic[9].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[9].dialog[i]);
-       
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[9].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[9].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+
             }
-            Console.SetCursorPosition(5, 5 + qL.eventDic[9].dialog.Count);
+            Console.SetCursorPosition(5, 5 + (qL.eventDic[9].dialog.Count) * 2);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("[{0,5}   ]", myDeck_[randNum - 1].Name);
             Console.Write("카드가 제거 되었습니다.");
@@ -152,19 +244,26 @@ namespace PirateOutLaws
         // 저주 받은 총 퀘스트
         public void CursedGunQuest(Player player_)
         {
-            for(int i = 0; i < qL.eventDic[10].dialog.Count; i++)
+            for (int i = 0; i < qL.eventDic[10].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[10].dialog[i]);
-            
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[10].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[10].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+
             }
-            Console.SetCursorPosition(5, 5 + qL.eventDic[10].dialog.Count);
+            Console.SetCursorPosition(5, 5 + (qL.eventDic[10].dialog.Count * 2));
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("최대 탄약이 1 증가합니다.");
+            Console.Write("최대 행동력이 1 증가합니다.");
             Console.ResetColor();
-            Console.SetCursorPosition(5, 6 + qL.eventDic[10].dialog.Count);
+            Console.SetCursorPosition(5, 5 + ((qL.eventDic[10].dialog.Count + 1) * 2));
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("최대 체력이 20 감소합니다.");
+            Console.Write("최대 체력이 20 감소합니다.");
             Console.ResetColor();
 
             
@@ -185,10 +284,19 @@ namespace PirateOutLaws
         // 보스 퀘스트
         public void BossQuest()
         {
+            
             for (int i = 0; i < qL.eventDic[qL.eventDic.Count - 1].dialog.Count; i++)
             {
-                Console.SetCursorPosition(5, 5 + i);
-                Console.WriteLine("{0}", qL.eventDic[qL.eventDic.Count - 1].dialog[i]);
+                Console.SetCursorPosition(4, 5 + i * 2);
+
+                for (int j = 0; j < qL.eventDic[qL.eventDic.Count - 1].dialog[i].Length; j++)
+                {
+                    Console.Write(qL.eventDic[qL.eventDic.Count - 1].dialog[i][j]);
+                    // 출력문 test
+                    Thread.Sleep(100);
+
+                }
+
             }
         }
     }

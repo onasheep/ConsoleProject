@@ -273,7 +273,7 @@ namespace PirateOutLaws
 
                             myHand.RemoveAt(num - 1);
                             break;
-                        // 회복 혹은 기타 이득 기
+                        // 회복 
                         case 3:
                             player_.CurHp += myHand[num - 1].Value;
                             if (player_.CurHp > player_.MaxHp)
@@ -296,11 +296,17 @@ namespace PirateOutLaws
                         case 4:
                             if(player_.ActionPoint < player_.MaxActionPoint)
                             {
+
                                 player_.ActionPoint += myHand[num - 1].Value;
                                 if(player_.ActionPoint > player_.MaxActionPoint)
                                 {
                                     player_.ActionPoint = player_.MaxActionPoint;
                                 }
+                                Console.CursorVisible = false;
+                                Console.ForegroundColor = ConsoleColor.DarkGray;
+                                uiManager.Print_GetActionPoint();
+                                Console.ResetColor();
+                                Thread.Sleep(1000);
                             }
                             else
                             {
