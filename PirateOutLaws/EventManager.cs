@@ -78,7 +78,7 @@ namespace PirateOutLaws
             }
             Console.SetCursorPosition(5, 5 + qL.eventDic[4].dialog.Count);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"[{cardDeck_[randNum - 1].Name,-1}　]카드를 얻었습니다.");
+            Console.WriteLine($"[　　{cardDeck_[randNum - 1].Name,-3}　　] 카드를 얻었습니다.");
             Console.ResetColor();
             myDeck_.Add(cardDeck_[randNum - 1]);
                                                                                    
@@ -141,7 +141,8 @@ namespace PirateOutLaws
             }
             Console.SetCursorPosition(5, 5 + qL.eventDic[9].dialog.Count);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"[{myDeck_[randNum - 1].Name,-2}　]카드가 제거 되었습니다.");
+            Console.Write("[{0,5}   ]", myDeck_[randNum - 1].Name);
+            Console.Write("카드가 제거 되었습니다.");
             Console.ResetColor();
             myDeck_.RemoveAt(randNum - 1);
         }
@@ -160,7 +161,7 @@ namespace PirateOutLaws
             Console.ResetColor();
             Console.SetCursorPosition(5, 6 + qL.eventDic[10].dialog.Count);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("최대 체력이 10 감소합니다.");
+            Console.WriteLine("최대 체력이 20 감소합니다.");
             Console.ResetColor();
 
             
@@ -170,7 +171,7 @@ namespace PirateOutLaws
                 player_.CurHp = player_.MaxHp;
             }
             player_.MaxActionPoint += 1;
-            player_.ActionPoint = player_.MaxActionPoint;
+            player_.ActionPoint += 1;
         
             
             

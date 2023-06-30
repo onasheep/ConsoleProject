@@ -145,7 +145,7 @@ namespace ConsoleProject
 
 
         #region Battle Effect
-        // 공격시 화살표로 공격 여부 보여주기
+        // 원거리 근거리 공격시 화살표로 공격 여부 보여주기
         /// <summary>
         /// 
         /// </summary>
@@ -179,13 +179,7 @@ namespace ConsoleProject
             }
         }
 
-        public void PrintDamage(int damage, int pos)
-        {
-            Console.SetCursorPosition(pos, 13);
-            Console.Write($"{damage}");
-            
-        }
-
+  
         public void Print_RangeEffect(int enemyPos)
         {
             for(int i = 5; i < 9; i ++)
@@ -198,6 +192,26 @@ namespace ConsoleProject
             Console.Write("※");
 
         }
+
+        // 15  7
+        public void Print_HealEffect()
+        {
+            for(int i = 8; i > 6; i--)
+            {
+                Console.SetCursorPosition(15, i);
+                Console.WriteLine("+");
+                Thread.Sleep(60);
+            }
+        }
+
+        // 데미지 혹은 회복 등 수치 출력
+        public void PrintValue(int damage, int pos)
+        {
+            Console.SetCursorPosition(pos, 13);
+            Console.Write($"{damage}");
+
+        }
+
         #endregion
 
 

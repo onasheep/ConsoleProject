@@ -95,7 +95,11 @@ namespace ConsoleProject
 
 
                 // 마지막 보스 이벤트 제외 - 1
-                int randNum = rand.Next(0, eL.eventList.Count - 1);
+                //int randNum = rand.Next(0, eL.eventList.Count - 1);
+
+                // Test 
+                int randNum = 8;
+
 
                 // 이벤트 출력시 +1
                 eventCount += 1;
@@ -174,8 +178,6 @@ namespace ConsoleProject
                     enemyList.Add(samllThied);
                     
                     OnBattle(enemyList);
-
-
                     break;
                 case 3:
                     eM.InnQuest(player);

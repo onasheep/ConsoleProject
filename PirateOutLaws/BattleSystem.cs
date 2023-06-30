@@ -91,9 +91,9 @@ namespace PirateOutLaws
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         uiManager.Print_AttackArrow(17, 34, "적");
                         Console.ResetColor();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        uiManager.PrintDamage(enemyList_[0].Damage, 15);
-                        Console.ResetColor();
+                        //Console.ForegroundColor = ConsoleColor.Red;
+                        //uiManager.PrintValue(enemyList_[0].Damage, 15);
+                        //Console.ResetColor();
                         Thread.Sleep(800);
                     }
                     else
@@ -102,9 +102,7 @@ namespace PirateOutLaws
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         uiManager.Print_AttackArrow(17, 47, "적");
                         Console.ResetColor();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        uiManager.PrintDamage(enemyList_[1].Damage, 15);
-                        Console.ResetColor();
+
                         Thread.Sleep(800);
                     }
                     Console.Clear();
@@ -189,7 +187,7 @@ namespace PirateOutLaws
                             uiManager.Print_AttackArrow(18,33, "플레이어");
                             Console.ResetColor();
                             Console.ForegroundColor = ConsoleColor.Red;
-                            uiManager.PrintDamage(myHand[num - 1].Value, 35);
+                            uiManager.PrintValue(myHand[num - 1].Value, 35);
                             Console.ResetColor();
                             Thread.Sleep(1000);
                             myHand.RemoveAt(num - 1);
@@ -208,7 +206,7 @@ namespace PirateOutLaws
                                 uiManager.Print_AttackArrow(18, 33, "플레이어");
                                 Console.ResetColor();
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                uiManager.PrintDamage(myHand[num - 1].Value, 35);
+                                uiManager.PrintValue(myHand[num - 1].Value, 35);
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
                                 myHand.RemoveAt(num - 1);
@@ -221,7 +219,7 @@ namespace PirateOutLaws
                                 uiManager.Print_AttackArrow(18, 46, "플레이어");
                                 Console.ResetColor();
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                uiManager.PrintDamage(myHand[num - 1].Value, 48);
+                                uiManager.PrintValue(myHand[num - 1].Value, 48);
                                 Console.ResetColor();
                                 Thread.Sleep(1000);
                                 myHand.RemoveAt(num - 1);
@@ -233,20 +231,46 @@ namespace PirateOutLaws
                             {
                                 enemyList_[i].CurHp -= myHand[num - 1].Value;
                                 
+                                // 적이 한명일떄 여러명일떄 데미지 출력 처리
+                                if(i == 0)
+                                {
+                                    Console.CursorVisible = false;
+                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    uiManager.Print_RangeEffect(35);
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    uiManager.PrintValue(myHand[num - 1].Value, 35);
+                                    Console.ResetColor();
+
+
+                                }
+                                else
+                                {
+                                    Console.CursorVisible = false;
+                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    uiManager.Print_RangeEffect(48);
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    uiManager.PrintValue(myHand[num - 1].Value, 48);
+                                    Console.ResetColor();
+
+                                }
+
+
                             }
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
 
-                            Console.CursorVisible = false;
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            uiManager.Print_RangeEffect(35);
-                            uiManager.Print_RangeEffect(48);
+                            //Console.CursorVisible = false;
+                            //Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            //uiManager.Print_RangeEffect(35);
+                            //uiManager.Print_RangeEffect(48);
                          
-                            Console.ResetColor();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            uiManager.PrintDamage(myHand[num - 1].Value, 35);
-                            uiManager.PrintDamage(myHand[num - 1].Value, 48);
-                            Console.ResetColor();
-                            Thread.Sleep(1000);
+                            //Console.ResetColor();
+                            //Console.ForegroundColor = ConsoleColor.Red;
+                            //uiManager.PrintValue(myHand[num - 1].Value, 35);
+                            //uiManager.PrintValue(myHand[num - 1].Value, 48);
+                            //Console.ResetColor();
+                            //Thread.Sleep(1000);
 
                             myHand.RemoveAt(num - 1);
                             break;
@@ -258,6 +282,15 @@ namespace PirateOutLaws
                                 player_.CurHp = player_.MaxHp;
                             }
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
+
+                            Console.CursorVisible = false;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            uiManager.Print_HealEffect();
+                            uiManager.PrintValue(myHand[num - 1].Value, 15);
+                            Console.ResetColor();
+                            Thread.Sleep(1000);
+
+
                             myHand.RemoveAt(num - 1);
                             break;
                         case 4:
@@ -364,15 +397,19 @@ namespace PirateOutLaws
             {
                 // 대미지 증가
                 case 0:
-                    enemy_.Damage -= damageRange;
-                    player_.CurHp -= enemy_.Damage;
                     enemy_.Damage += damageRange;
+                    player_.CurHp -= enemy_.Damage;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    uiManager.PrintValue(enemy_.Damage, 15);
+                    Console.ResetColor();
+                    enemy_.Damage -= damageRange;
                     break;
-                // 대미지 감소
+                // 원래 대미지
                 case 1:
-                    enemy_.Damage += damageRange;
                     player_.CurHp -= enemy_.Damage;
-                    enemy_.Damage -= damageRange;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    uiManager.PrintValue(enemy_.Damage, 15);
+                    Console.ResetColor();
                     break;
             }
 
