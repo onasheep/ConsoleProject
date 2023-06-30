@@ -21,19 +21,19 @@ namespace ConsoleProject
             Card slash = new Card();
             slash.Init("　베기", 0, 8, 0,"근접　");
             Card nanta = new Card();
-            nanta.Init("　난타", 0, 9, 0,"근접　");
+            nanta.Init("　난타", 0, 13, 0,"근접　");
             Card shot = new Card();
-            shot.Init("　사격", 1, 10, 1,"원거리");
+            shot.Init("　사격", 1, 9, 1,"원거리");
             Card accuShot = new Card();
             accuShot.Init("　속사", 2, 17,1,"원거리");
             Card wholeShot = new Card();
-            wholeShot.Init("　난사", 3, 20,2,"범위　");
+            wholeShot.Init("　난사", 3, 18,2,"범위　");
             Card windstorm = new Card();
             windstorm.Init("　광풍", 0, 9, 0,"근접　");
             Card allin = new Card();
             allin.Init("　올인", 0, 15, 0, "근접　");
             Card quickShot = new Card();
-            quickShot.Init("　큇샷",0, 9, 1, "원거리");
+            quickShot.Init("　큇샷",0, 8, 1, "원거리");
 
 
             CardDeck = new List<Card>
@@ -58,20 +58,20 @@ namespace ConsoleProject
             for (int i = 0; i < 2; i++)
             {
                 Card bullet = new Card();
-                bullet.Init(" 탄약", 0, 2, 4, "보급　");
+                bullet.Init("　탄약", 0, 2, 4, "보급　");
                 MyDeck.Add(bullet);
             }
 
 
             Card slash = new Card();
-            slash.Init(" 베기", 0, 8, 0, "근접　");
+            slash.Init("　베기", 0, 8, 0, "근접　");
             MyDeck.Add(slash);
 
 
             for (int i = 0; i < 2; i++)
             {
                 Card shot = new Card();
-                shot.Init(" 사격", 1, 10, 1, "원거리");
+                shot.Init("　사격", 1, 10, 1, "원거리");
                 MyDeck.Add(shot);
 
             }
@@ -82,7 +82,7 @@ namespace ConsoleProject
 
 
             Card fist = new Card();
-            fist.Init(" 주먹", 0, 6, 0, "근접　");
+            fist.Init("　주먹", 0, 6, 0, "근접　");
             MyDeck.Add(fist);
 
             Card doubleShot = new Card();
@@ -90,7 +90,7 @@ namespace ConsoleProject
             MyDeck.Add(doubleShot);
 
             Card food = new Card();
-            food.Init(" 식량", 1, 50, 3, "회복　");
+            food.Init("　식량", 1, 50, 3, "회복　");
             MyDeck.Add(food);
 
            // 광역공격 테스트 용

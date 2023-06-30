@@ -15,7 +15,7 @@ namespace PirateOutLaws
         {
             UIManager ui = new UIManager();
 
-            ui.DrawEpilog();
+          
 
             Thread.Sleep(2000);
 

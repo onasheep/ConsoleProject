@@ -58,11 +58,11 @@ namespace PirateOutLaws
                     uiManager.PrintMyHand(myHand);
 
 
-                    if (player_.ActionPoint != 3)
+                    if (player_.ActionPoint != player_.MaxActionPoint)
                     {
                         player_.ActionPoint += 1;
                     }
-                    uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
+                    uiManager.DrawStatUI(player_);
                     uiManager.DrawDeckUi(myDeck);
 
                 }
@@ -84,31 +84,38 @@ namespace PirateOutLaws
                 for (int i = 0; i < enemyList_.Count; i++)
                 {
                     
-                    EnemyAttack(player_, enemyList_[i]);
+                    //EnemyAttack(player_, enemyList_[i]);
                     if (i == 0)
                     {
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        uiManager.Print_AttackArrow(17, 34, "적");
+                        uiManager.Print_AttackArrow(18, 34, "적");
                         Console.ResetColor();
-                        //Console.ForegroundColor = ConsoleColor.Red;
-                        //uiManager.PrintValue(enemyList_[0].Damage, 15);
-                        //Console.ResetColor();
+
+                        EnemyAttack(player_, enemyList_[i]);
+                        uiManager.PrintBattleIcon(enemyList_);
+
                         Thread.Sleep(800);
+                        Console.Clear();
                     }
                     else
                     {
                         Console.CursorVisible = false;
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        uiManager.Print_AttackArrow(17, 47, "적");
+                        uiManager.Print_AttackArrow(18, 47, "적");
                         Console.ResetColor();
+
+                        EnemyAttack(player_, enemyList_[i]);
 
                         Thread.Sleep(800);
                     }
                     Console.Clear();
+
+
+
                     uiManager.DrawBattleScene();
                     uiManager.PrintBattleIcon(enemyList_);
-                    uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
+                    uiManager.DrawStatUI(player_);
                     uiManager.DrawInputLog();
                     uiManager.DrawDeckUi(myDeck);
                     uiManager.PrintMyHand(myHand);
@@ -241,6 +248,7 @@ namespace PirateOutLaws
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     uiManager.PrintValue(myHand[num - 1].Value, 35);
                                     Console.ResetColor();
+                                    Thread.Sleep(1000);
 
 
                                 }
@@ -253,6 +261,7 @@ namespace PirateOutLaws
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     uiManager.PrintValue(myHand[num - 1].Value, 48);
                                     Console.ResetColor();
+                                    Thread.Sleep(1000);
 
                                 }
 
@@ -260,17 +269,7 @@ namespace PirateOutLaws
                             }
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
 
-                            //Console.CursorVisible = false;
-                            //Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            //uiManager.Print_RangeEffect(35);
-                            //uiManager.Print_RangeEffect(48);
                          
-                            //Console.ResetColor();
-                            //Console.ForegroundColor = ConsoleColor.Red;
-                            //uiManager.PrintValue(myHand[num - 1].Value, 35);
-                            //uiManager.PrintValue(myHand[num - 1].Value, 48);
-                            //Console.ResetColor();
-                            //Thread.Sleep(1000);
 
                             myHand.RemoveAt(num - 1);
                             break;
@@ -293,10 +292,15 @@ namespace PirateOutLaws
 
                             myHand.RemoveAt(num - 1);
                             break;
+                            // 탄약(행동력) 보충 
                         case 4:
                             if(player_.ActionPoint < player_.MaxActionPoint)
                             {
                                 player_.ActionPoint += myHand[num - 1].Value;
+                                if(player_.ActionPoint > player_.MaxActionPoint)
+                                {
+                                    player_.ActionPoint = player_.MaxActionPoint;
+                                }
                             }
                             else
                             {
@@ -309,13 +313,15 @@ namespace PirateOutLaws
                             }
                             myHand.RemoveAt(num - 1);
                             break;
+                            // 드로우 
                         case 5:
                             player_.ActionPoint -= myHand[num - 1].ActionCost;
-                            for(int i = 0; i < myHand[num - 1].Value; i++)
+                            int drawCount = myHand[num - 1].Value;
+                            myHand.RemoveAt(num - 1);
+                            for (int i = 0; i < drawCount; i++)
                             {                               
                                 DrawCard(myDeck, myHand, discardDeck);
                             }
-                            myHand.RemoveAt(num - 1);
                             break;
                     }
                 }
@@ -330,7 +336,7 @@ namespace PirateOutLaws
 
                 uiManager.DrawBattleScene();
                 uiManager.PrintBattleIcon(enemyList_);
-                uiManager.DrawStatUI(player_.Name, player_.CurHp, player_.MaxHp, player_.ActionPoint);
+                uiManager.DrawStatUI(player_);
                 uiManager.DrawInputLog();
                 uiManager.DrawDeckUi(myDeck);
                 uiManager.PrintMyHand(myHand);

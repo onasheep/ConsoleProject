@@ -78,8 +78,10 @@ namespace PirateOutLaws
             }
             Console.SetCursorPosition(5, 5 + qL.eventDic[4].dialog.Count);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"[　　{cardDeck_[randNum - 1].Name,-3}　　] 카드를 얻었습니다.");
+            Console.Write("[{0,5}   ]", cardDeck_[randNum - 1].Name);
+            Console.Write("카드를 얻었습니다.");
             Console.ResetColor();
+
             myDeck_.Add(cardDeck_[randNum - 1]);
                                                                                    
             
@@ -144,6 +146,7 @@ namespace PirateOutLaws
             Console.Write("[{0,5}   ]", myDeck_[randNum - 1].Name);
             Console.Write("카드가 제거 되었습니다.");
             Console.ResetColor();
+
             myDeck_.RemoveAt(randNum - 1);
         }
         // 저주 받은 총 퀘스트

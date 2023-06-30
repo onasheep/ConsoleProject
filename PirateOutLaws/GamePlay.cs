@@ -94,11 +94,10 @@ namespace ConsoleProject
 
 
 
-                // 마지막 보스 이벤트 제외 - 1
-                //int randNum = rand.Next(0, eL.eventList.Count - 1);
+                 //마지막 보스 이벤트 제외 - 1 Test
+                int randNum = rand.Next(0, eL.eventList.Count - 1);
 
-                // Test 
-                int randNum = 8;
+                
 
 
                 // 이벤트 출력시 +1
@@ -111,7 +110,7 @@ namespace ConsoleProject
                     isFirstEvent = false;
                 }
                                                 
-                uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
+                uiManager.DrawStatUI(player);
                 uiManager.DrawDeckUi(deckManager.MyDeck);
                 uiManager.DrawInputLog();
 
@@ -172,7 +171,7 @@ namespace ConsoleProject
                     Enemy thief = new Enemy();
                     Enemy samllThied = new Enemy();
                     enemyList = new List<Enemy>();
-                    thief.Init("도적", 10, 50, 50); // 5 - >임시 조정 대미지 1000
+                    thief.Init("도적", 10, 50, 50); 
                     samllThied.Init("민첩한 도적", 14, 30, 30);
                     enemyList.Add(thief);
                     enemyList.Add(samllThied);
@@ -195,7 +194,7 @@ namespace ConsoleProject
                     Enemy wolf = new Enemy();
                     Enemy wolf1 = new Enemy();
                     enemyList = new List<Enemy>();
-                    wolf.Init("늑대", 15, 30, 30); // 8 - > 임시 조정 대미지 1000
+                    wolf.Init("늑대", 15, 30, 30); 
                     wolf1.Init("늑대", 12, 30, 30);
                     enemyList.Add(wolf);
                     enemyList.Add(wolf1);
@@ -229,7 +228,7 @@ namespace ConsoleProject
                     break;
                 case 10:
                     eM.CursedGunQuest(player);
-                    uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
+                    uiManager.DrawStatUI(player);
                     break;
                 case 20:
                     eM.BossQuest();
@@ -256,7 +255,7 @@ namespace ConsoleProject
 
                 uiManager.DrawBattleScene();
                 uiManager.PrintBattleIcon(enemyList);
-                uiManager.DrawStatUI(player.Name, player.CurHp, player.MaxHp, player.ActionPoint);
+                uiManager.DrawStatUI(player);
                 uiManager.DrawInputLog();
                 uiManager.DrawDeckUi(deckManager.MyDeck);
                 uiManager.PrintMyHand(deckManager.MyHand);

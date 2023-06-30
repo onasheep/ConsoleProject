@@ -56,7 +56,7 @@ namespace ConsoleProject
         }
 
         // 플레이어 능력치 창
-        public void DrawStatUI(string name, int hp, int maxHp, int actionPoint)
+        public void DrawStatUI(Player player)
         {
             for(int i = 0; i < 4; i++)
             {
@@ -67,11 +67,11 @@ namespace ConsoleProject
                 }
                 else if (i == 1)
                 {
-                    Console.WriteLine("│ 직업 : {0}                                            │", name);
+                    Console.WriteLine("│ 직업 : {0}                                            │", player.Name);
                 }
                 else if (i == 2)
                 {
-                    Console.WriteLine($"│ 체력 : {hp,-5} / {maxHp}                             탄약 :{actionPoint,2}│");
+                    Console.WriteLine($"│ 체력 : {player.CurHp,-5} / {player.MaxHp}                       탄약 : {player.ActionPoint} / {player.MaxActionPoint}  │");
                 }
                 else if (i == 3)
                 {
@@ -432,7 +432,7 @@ namespace ConsoleProject
                     }            
                     else if( j == 17)
                     {
-                        Console.WriteLine("┃{0,2}[{1,1}]┃", myHand_[i].Name, myHand_[i].ActionCost);
+                        Console.WriteLine("┃{0,3}[{1,1}]┃", myHand_[i].Name, myHand_[i].ActionCost);
                     }
                     else if (j == 18)
                     {
@@ -474,9 +474,14 @@ namespace ConsoleProject
                     {
                         Console.Write($"┃{WinSelectCard[i].Name,4}[{WinSelectCard[i].ActionCost,-1}] ┃".PadRight(10));
                     }
-                    else if (j == 19)
+                    else if (j == 18)
                     {
-                        Console.Write($"┃ {WinSelectCard[i].Value,6}    ┃".PadRight(10));
+                        Console.WriteLine("┃    {0,3} ┃", WinSelectCard[i].TypeName);
+
+                    }
+                    else if (j == 20)
+                    {
+                        Console.Write("┃    {0,3}    ┃", WinSelectCard[i].Value);
                     }
                     else if (j == 23)
                     {
