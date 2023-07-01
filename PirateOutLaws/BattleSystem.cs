@@ -165,13 +165,13 @@ namespace PirateOutLaws
                     continue;
                 }
 
-                // 탄약이 부족한 경우 경고문을 띄우고 다시 선택
+                // 행동력이 부족한 경우 경고문을 띄우고 다시 선택
                 else if (myHand[num - 1].ActionCost > player_.ActionPoint)
                 {
                     uiManager.DrawInputLog();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.SetCursorPosition(5, 26);
-                    Console.WriteLine("탄약이 부족합니다.".PadRight(20,' '));
+                    Console.WriteLine("행동력이 부족합니다.".PadRight(20,' '));
                     Console.CursorVisible = false;
                     Console.ResetColor();
                     Thread.Sleep(800);
