@@ -923,7 +923,7 @@ namespace ConsoleProject
                 }
                 else if (i == 27)
                 {
-                    Console.Write($"│     {eventCount_,-2}  /  {bossEventCount}    │");
+                    Console.Write($"│      {eventCount_,-2} / {bossEventCount}     │");
                 }
                 else if (i == 28)
                 {

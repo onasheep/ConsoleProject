@@ -35,7 +35,7 @@ namespace ConsoleProject
         // 인트로 이벤트 체크
         bool isFirstEvent = true;
         // 보스전 까지 체크
-        int eventCount = 10;
+        int eventCount = 0;
         int bossEventCount = 11;
 
 
@@ -336,10 +336,10 @@ namespace ConsoleProject
             {
                 Console.Clear();
                 uiManager.DrawEpilog();
-                Thread.Sleep(4000);
+                Thread.Sleep(3000);
                 Console.Clear();
                 uiManager.PrintGameEndingAscii();
-                Thread.Sleep(4000);
+                Thread.Sleep(3000);
             }
         }
 
