@@ -27,14 +27,15 @@ namespace ConsoleProject
             Card accuShot = new Card();
             accuShot.Init("　속사", 2, 17,1,"원거리");
             Card wholeShot = new Card();
-            wholeShot.Init("　난사", 3, 19,2,"범위　");
+            wholeShot.Init("　난사", 2, 15,2,"범위　");
             Card windstorm = new Card();
             windstorm.Init("　광풍", 0, 9, 0,"근접　");
             Card allin = new Card();
             allin.Init("　올인", 0, 15, 0, "근접　");
             Card quickShot = new Card();
-            quickShot.Init("　큇샷",0, 9, 1, "원거리");
-
+            quickShot.Init("　퀵샷",0, 9, 1, "원거리");
+            Card supply = new Card();
+            supply.Init("재보급", 2, 3, 5, "드로우");
 
             CardDeck = new List<Card>
             {
@@ -45,7 +46,8 @@ namespace ConsoleProject
                 wholeShot,
                 windstorm,
                 allin,
-                quickShot
+                quickShot,
+                supply
 
             };
 
@@ -67,14 +69,15 @@ namespace ConsoleProject
             slash.Init("　베기", 0, 8, 0, "근접　");
             MyDeck.Add(slash);
 
+            Card wholeShot = new Card();
+            wholeShot.Init("　난사", 2, 15, 2, "범위　");
+            MyDeck.Add(wholeShot);
 
-            for (int i = 0; i < 2; i++)
-            {
-                Card shot = new Card();
-                shot.Init("　사격", 1, 10, 1, "원거리");
-                MyDeck.Add(shot);
+            Card shot = new Card();
+            shot.Init("　사격", 1, 10, 1, "원거리");
+            MyDeck.Add(shot);
 
-            }
+
 
             Card supply = new Card();
             supply.Init("재보급", 2, 3, 5, "드로우");
@@ -100,7 +103,7 @@ namespace ConsoleProject
         public Card UnkownCard()
         {
             Card unKownCard = new Card();
-            unKownCard.Init("　한방", 2, 50, 2, "범위　");
+            unKownCard.Init("　폭격", 2, 80, 2, "범위　");
             return unKownCard;
         }
 

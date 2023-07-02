@@ -26,8 +26,6 @@ namespace ConsoleProject
 
         EventManager eM;
 
-        Relic relic;
-
         // 전투 패배 체크
         bool isLose = false;
         // 전투 승리 체크
@@ -88,6 +86,7 @@ namespace ConsoleProject
 
             while (true)
             {
+
                 if (isEnd)
                 {
                     break;
@@ -249,7 +248,7 @@ namespace ConsoleProject
 
                     Enemy boss = new Enemy();
                     enemyList = new List<Enemy>();
-                    boss.Init("검은수염", 35, 250, 400);
+                    boss.Init("검은수염", 30, 200, 200);
                     enemyList.Add(boss);
 
                     OnBattle(enemyList);

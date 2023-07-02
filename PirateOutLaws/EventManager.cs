@@ -22,6 +22,7 @@ namespace PirateOutLaws
         // 인트로 퀘스트
         public void IntroQuest()
         {
+            int thread = 100;
             for (int i = 0; i < qL.eventDic[0].dialog.Count; i++)
             {
                 Console.SetCursorPosition(4, 5 + i * 2);
@@ -29,17 +30,27 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[0].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
-                }
+                    Thread.Sleep(thread);
+                    if(Console.KeyAvailable)
+                    {
+                        thread = 0;
+                        
+                    }
                    
-
-                
+                }
+              
             }
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
 
+            }
         }
         // 원숭이 퀘스트
         public void MokeyQuest(Player player_)
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[1].dialog.Count; i++)
             {
                 if(i == qL.eventList[1].dialog.Count - 1)
@@ -52,18 +63,29 @@ namespace PirateOutLaws
                     
                     Console.Write(qL.eventDic[1].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
                 Console.ResetColor();
 
             }
-
             player_.CurHp -= 10;
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
         }
         // 무리 배틀 퀘스트
         public void HodeQeust()
         {
+            int thread = 100;
             for (int i = 0; i < qL.eventDic[2].dialog.Count; i++)
             {
                 Console.SetCursorPosition(4, 5 + i * 2);
@@ -71,9 +93,20 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[2].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
+
+            }
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
 
             }
         }
@@ -81,6 +114,8 @@ namespace PirateOutLaws
         // 여관 퀘스트
         public void InnQuest(Player player_)
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[3].dialog.Count; i++)
             {
                 if (i == qL.eventList[3].dialog.Count - 1)
@@ -92,8 +127,12 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[3].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
 
+                    }
                 }
                 Console.ResetColor();
             }
@@ -102,10 +141,18 @@ namespace PirateOutLaws
             {
                 player_.CurHp = player_.MaxHp;
             }
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
         }
         // 보물 퀘스트 (카드 한장 획득) 
         public void TreasureQuest(List<Card> cardDeck_,List<Card> myDeck_)
         {
+            int thread = 100;
+
             Random rand = new Random();
             int randNum = rand.Next(1, cardDeck_.Count);
             for (int i = 0; i < qL.eventDic[4].dialog.Count; i++)
@@ -116,8 +163,12 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[4].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
 
+                    }
                 }
 
             }
@@ -128,13 +179,20 @@ namespace PirateOutLaws
             Console.ResetColor();
 
             myDeck_.Add(cardDeck_[randNum - 1]);
-                                                                                   
-            
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
+
         }
 
         // 짐승 무리 배틀 퀘스트
         public void BeastQuest()
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[5].dialog.Count; i++)
             {
                 Console.SetCursorPosition(4, 5 + i * 2);
@@ -143,9 +201,21 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[5].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
+
 
                 }
+
+            }
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
 
             }
         }
@@ -153,6 +223,8 @@ namespace PirateOutLaws
         // 독 물 퀘스트
         public void PoinsonQeust(Player player_)
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[6].dialog.Count; i++)
             {
                 
@@ -166,17 +238,30 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[6].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
                 Console.ResetColor();
             }
-            player_.CurHp -= 20;         
+            player_.CurHp -= 20;
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
         }
 
         // 폐허 배틀 퀘스트
         public void RuinQuest()
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[7].dialog.Count; i++)
             {
                 Console.SetCursorPosition(4, 5 + i * 2);
@@ -185,9 +270,20 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[7].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
+
+            }
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
 
             }
         }
@@ -195,6 +291,8 @@ namespace PirateOutLaws
         // 사냥 퀘스트
         public void HuntQuest(Player player_)
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[8].dialog.Count; i++)
             {
                 if (i == qL.eventList[8].dialog.Count - 1)
@@ -206,18 +304,31 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[8].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
                 Console.ResetColor();
             }
             player_.CurHp += 20;
             player_.MaxHp += 20;
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
         }
 
         // 저주 퀘스트
         public void CurseQuest(List<Card> myDeck_)
         {
+            int thread = 100;
+
             Random rand = new Random();
             int randNum = rand.Next(1, myDeck_.Count);
             for (int i = 0; i < qL.eventDic[9].dialog.Count; i++)
@@ -228,7 +339,12 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[9].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
 
@@ -240,10 +356,18 @@ namespace PirateOutLaws
             Console.ResetColor();
 
             myDeck_.RemoveAt(randNum - 1);
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
         }
         // 저주 받은 총 퀘스트
         public void CursedGunQuest(Player player_)
         {
+            int thread = 100;
+
             for (int i = 0; i < qL.eventDic[10].dialog.Count; i++)
             {
                 Console.SetCursorPosition(4, 5 + i * 2);
@@ -252,7 +376,12 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[10].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
 
@@ -274,13 +403,19 @@ namespace PirateOutLaws
             }
             player_.MaxActionPoint += 1;
             player_.ActionPoint += 1;
-        
-            
-            
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
+
         }
 
         public void UnkownCardQuest(List<Card> myDeck_)
         {
+            int thread = 100;
+
             Random rand = new Random();
             for (int i = 0; i < qL.eventDic[11].dialog.Count; i++)
             {
@@ -290,7 +425,12 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[11].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
                 }
 
             }
@@ -315,12 +455,20 @@ namespace PirateOutLaws
             Console.ResetColor();
 
             myDeck_.Add(deckmanager.UnkownCard());
-         
+
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
 
         }
 
         public void GambleQuest(List<Card> myDeck_, List<Card> cardDeck_)
         {
+            int thread = 100;
+
             Random rand = new Random();
             for (int i = 0; i < qL.eventDic[12].dialog.Count; i++)
             {
@@ -330,7 +478,12 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[12].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
                 }
 
             }
@@ -356,12 +509,19 @@ namespace PirateOutLaws
 
                 myDeck_.Add(cardDeck_[randNum - 1]);
             }
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
+
+            }
         }
 
 
         // 보스 퀘스트
         public void BossQuest()
         {
+            int thread = 100;
             
             for (int i = 0; i < qL.eventDic[qL.eventDic.Count - 1].dialog.Count; i++)
             {
@@ -371,9 +531,20 @@ namespace PirateOutLaws
                 {
                     Console.Write(qL.eventDic[qL.eventDic.Count - 1].dialog[i][j]);
                     // 출력문 test
-                    Thread.Sleep(100);
+                    Thread.Sleep(thread);
+                    if (Console.KeyAvailable)
+                    {
+                        thread = 0;
+
+                    }
 
                 }
+
+            }
+
+            ConsoleKeyInfo space = Console.ReadKey();
+            while (space.Key != ConsoleKey.Spacebar)
+            {
 
             }
         }
